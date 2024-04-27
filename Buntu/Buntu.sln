@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buntu", "Buntu\Buntu.csproj", "{8A6DFD37-B10C-45C8-8CE5-8635570DE716}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buntu.Infrastructure", "Buntu.Infrastructure\Buntu.Infrastructure.csproj", "{1BCB8B89-19F7-45F9-A4BB-3576A20FA85D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buntu.Core", "Buntu.Core\Buntu.Core.csproj", "{10D85F50-89A5-4C3A-957E-A456FBC71F71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8A6DFD37-B10C-45C8-8CE5-8635570DE716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A6DFD37-B10C-45C8-8CE5-8635570DE716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A6DFD37-B10C-45C8-8CE5-8635570DE716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCB8B89-19F7-45F9-A4BB-3576A20FA85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCB8B89-19F7-45F9-A4BB-3576A20FA85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCB8B89-19F7-45F9-A4BB-3576A20FA85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCB8B89-19F7-45F9-A4BB-3576A20FA85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D85F50-89A5-4C3A-957E-A456FBC71F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D85F50-89A5-4C3A-957E-A456FBC71F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D85F50-89A5-4C3A-957E-A456FBC71F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D85F50-89A5-4C3A-957E-A456FBC71F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

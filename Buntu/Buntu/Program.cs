@@ -1,4 +1,4 @@
-using Buntu.Data;
+using Buntu.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

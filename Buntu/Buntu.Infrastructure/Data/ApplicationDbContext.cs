@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Buntu.Data
+namespace Buntu.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
