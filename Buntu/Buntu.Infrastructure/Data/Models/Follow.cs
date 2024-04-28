@@ -4,29 +4,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buntu.Infrastructure.Data.Models
 {
-    [Comment("Like")]
-    public class Like
+    [Comment("Follow")]
+    public class Follow
     {
         [Key]
-        [Comment("Like identifier")]
+        [Comment("Follow identifier")]
         public int Id { get; set; }
-
-        [Required]
-        [Comment("Post identifier")]
-        public int PostId { get; set; }
 
         [Required]
         [Comment("User identifier")]
         public string UserId { get; set; } = string.Empty;
 
         [Required]
-        [Comment("Like variant")]
-        public string Variant { get; set; } = string.Empty;
-
-        [ForeignKey(nameof(PostId))]
-        public Post Post { get; set; } = null!;
+        [Comment("Follower user identifier")]
+        public string FollowerId { get; set; } = string.Empty;
 
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
+
+        [ForeignKey(nameof(FollowerId))]
+        public ApplicationUser Follower { get; set; } = null!;
     }
 }
