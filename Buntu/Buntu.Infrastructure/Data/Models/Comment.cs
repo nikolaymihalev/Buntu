@@ -4,35 +4,33 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buntu.Infrastructure.Data.Models
 {
-    [Comment("Post")]
-    public class Post
+    [Comment("Comment")]
+    public class Comment
     {
         [Key]
-        [Comment("Post identifier")]
+        [Comment("Comment identifier")]
         public int Id { get; set; }
 
         [Required]
-        [Comment("Post content")]
+        [Comment("Comment content")]
         public string Content { get; set; } = string.Empty;
 
         [Required]
-        [Comment("Publisher identifier")]
+        [Comment("Post identifier")]
+        public int PostId { get; set; }
+
+        [Required]
+        [Comment("User identifier")]
         public string UserId { get; set; } = string.Empty;
 
         [Required]
-        [Comment("Date of creation")]
+        [Comment("Publication date")]
         public DateTime CreatedDate { get; set; }
 
-        [Comment("Post image")]
-        public byte[] Image { get; set; } = new byte[128];
-
-        [Required]
-        [Comment("Post status")]
-        public string Status { get; set; } = string.Empty;
+        [ForeignKey(nameof(PostId))]
+        public Post Post { get; set; } = null!;
 
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
-
-        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
