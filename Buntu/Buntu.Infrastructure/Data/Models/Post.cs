@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buntu.Infrastructure.Data.Models
 {
@@ -28,5 +29,8 @@ namespace Buntu.Infrastructure.Data.Models
         [Required]
         [Comment("Post status")]
         public string Status { get; set; } = string.Empty;
+
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser User { get; set; } = null!;
     }
 }
