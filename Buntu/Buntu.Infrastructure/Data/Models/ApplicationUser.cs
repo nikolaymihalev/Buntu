@@ -20,5 +20,7 @@ namespace Buntu.Infrastructure.Data.Models
         [Required]
         [Comment("User profile image")]
         public byte[] ProfileImage { get; set; } = new byte[128];
+
+        public IEnumerable<Follow> Follows { get; set; } = new List<Follow>();
     }
 }

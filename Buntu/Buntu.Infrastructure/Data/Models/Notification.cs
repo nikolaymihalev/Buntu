@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buntu.Infrastructure.Data.Models
@@ -6,6 +7,7 @@ namespace Buntu.Infrastructure.Data.Models
     [Comment("Notification")]
     public class Notification
     {
+        [Key]
         [Comment("Notification identifier")]
         public int Id { get; set; }
 
@@ -15,6 +17,7 @@ namespace Buntu.Infrastructure.Data.Models
         [Comment("Notification type")]
         public string Type { get; set; } = string.Empty;
 
+        [NotMapped]
         [Comment("Related type identifier (like, comment, follow)")]
         public object RelatedId { get; set; } = null!;
 
