@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buntu.Infrastructure.Data.Models
 {
@@ -24,6 +25,8 @@ namespace Buntu.Infrastructure.Data.Models
         [Comment("User profile image")]
         public byte[] ProfileImage { get; set; } = new byte[128];
 
-        public IEnumerable<Follow> Follows { get; set; } = new List<Follow>();
+        public ICollection<Follow> Follows { get; set; } = new List<Follow>();
+
+        public ICollection<Follow> Followers { get; set; } = new List<Follow>();
     }
 }

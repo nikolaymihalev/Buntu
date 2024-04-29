@@ -1,4 +1,5 @@
-﻿using Buntu.Infrastructure.Data.Models;
+﻿using Buntu.Infrastructure.Data.Configurations;
+using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,20 +20,12 @@ namespace Buntu.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Follow>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.Follows)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Comment>()
-                .HasOne(x => x.Post)
-                .WithMany(x => x.Comments)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Like>()
-                .HasOne(x => x.Post)
-                .WithMany(x => x.Likes)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new PostConfiguration());
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new LikeConfiguration());
+            builder.ApplyConfiguration(new FollowConfiguration());
+            builder.ApplyConfiguration(new NotificationConfiguration());
 
             base.OnModelCreating(builder);
         }
