@@ -9,11 +9,17 @@ namespace Buntu.Infrastructure.Data
         public ApplicationUser Petur { get; private set; } = null!;
         public Post Holiday { get; private set; } = null!;
         public Post Car { get; private set; } = null!;
+        public Comment NiceCar { get; private set; } = null!;
+        public Comment Nature { get; private set; } = null!;
+        public Like Heart { get; private set; } = null!;
+        public Like Thumb { get; private set; } = null!;
 
         public SeedData()
         {
             SeedUsers();
             SeedPosts();
+            SeedComments();
+            SeedLikes();
         }
 
         private void SeedUsers() 
@@ -68,6 +74,46 @@ namespace Buntu.Infrastructure.Data
                 CreatedDate = Convert.ToDateTime("27/04/2024"),
                 Image = File.ReadAllBytes(Path.Combine(@"Images", "Lamborghini.jpg")),
                 Status = "Happy"
+            };
+        }
+
+        private void SeedComments() 
+        {
+            NiceCar = new Comment()
+            {
+                Id = 1,
+                Content = "Cool car! I want one too!",
+                PostId = 2,
+                UserId = Ivan.Id,
+                CreatedDate = Convert.ToDateTime("28/04/2024"),
+            };
+
+            Nature = new Comment()
+            {
+                Id = 2,
+                Content = "What a beautiful nature!",
+                PostId = 1,
+                UserId = Petur.Id,
+                CreatedDate = Convert.ToDateTime("30/04/2024"),
+            };
+        }
+
+        private void SeedLikes() 
+        {
+            Heart = new Like()
+            {
+                Id = 1,
+                PostId = 1,
+                UserId = Petur.Id,
+                Variant = "Heart"
+            };
+
+            Thumb = new Like()
+            {
+                Id = 2,
+                PostId = 2,
+                UserId = Ivan.Id,
+                Variant = "Thumb"
             };
         }
     }
