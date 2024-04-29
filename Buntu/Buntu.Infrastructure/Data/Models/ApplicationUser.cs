@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Buntu.Infrastructure.Constants;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,10 +9,12 @@ namespace Buntu.Infrastructure.Data.Models
     {
         [Required]
         [Comment("User first name")]
+        [MaxLength(ValidationConstants.NameMaxLength)]
         public string FirstName { get; set; } = string.Empty;
 
         [Required]
         [Comment("User last name")]
+        [MaxLength(ValidationConstants.NameMaxLength)]
         public string LastName { get; set; } = string.Empty;
 
         [Comment("User full name")]
