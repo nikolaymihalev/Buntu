@@ -7,7 +7,7 @@ namespace Buntu.Core.Contracts
         Task<PostPageModel> GetPostsForPageAsync(int currentPage = 1);
         Task<IEnumerable<PostInfoModel>> GetAllPostsAsync();
         Task AddPostAsync(PostFormModel model);
-        Task EditPostAsync(int id);
+        Task EditPostAsync(PostFormModel model);
         Task DeletePostAsync(int id);
         Task<PostInfoModel?> GetPostByIdAsync(int id);
     }

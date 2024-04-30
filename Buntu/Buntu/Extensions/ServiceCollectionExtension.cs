@@ -1,4 +1,6 @@
-﻿using Buntu.Infrastructure.Common;
+﻿using Buntu.Core.Contracts;
+using Buntu.Core.Services;
+using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Data;
 using Buntu.Infrastructure.Data.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,6 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services) 
         {
+            services.AddScoped<IPostService, PostService>();
+
             return services;
         }
 

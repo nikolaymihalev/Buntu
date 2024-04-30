@@ -1,38 +1,123 @@
 ﻿using Buntu.Core.Contracts;
+using Buntu.Core.Enums;
 using Buntu.Core.Models.Post;
+using Buntu.Infrastructure.Common;
+using Buntu.Infrastructure.Constants;
+using Buntu.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Buntu.Core.Services
 {
     public class PostService : IPostService
     {
-        public Task AddPostAsync(PostFormModel model)
+        private readonly IRepository repository;
+
+        public PostService(IRepository _repository)
         {
-            throw new NotImplementedException();
+            repository = _repository;
         }
 
-        public Task DeletePostAsync(int id)
+        public async Task AddPostAsync(PostFormModel model)
         {
-            throw new NotImplementedException();
+            var post = new Post()
+            {
+                Content = model.Content,
+                UserId = model.UserId,
+                CreatedDate = DateTime.Now,
+                Image = model.Image,
+                Status = model.Status.ToString()
+            };
+
+            try
+            {
+                await repository.AddAsync<Post>(post);
+                await repository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(ErrorMessageConstants.OperationFailedErrorMessage);
+            }
         }
 
-        public Task EditPostAsync(int id)
+        public async Task DeletePostAsync(int id)
         {
-            throw new NotImplementedException();
+            var post = await repository.GetByIdAsync<Post>(id);
+
+            if (post == null) 
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+
+            await repository.DeleteAsync<Post>(post);
         }
 
-        public Task<IEnumerable<PostInfoModel>> GetAllPostsAsync()
+        public async Task EditPostAsync(PostFormModel model)
         {
-            throw new NotImplementedException();
+            var post = await repository.GetByIdAsync<Post>(model.Id);
+
+            if (post == null)
+            {
+                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+            }
+
+            post.Content = model.Content;
+            post.Image = model.Image;
+            post.Status = model.Status.ToString();
+
+            await repository.SaveChangesAsync();
         }
 
-        public Task<PostInfoModel?> GetPostByIdAsync(int id)
+        public async Task<IEnumerable<PostInfoModel>> GetAllPostsAsync()
         {
-            throw new NotImplementedException();
+            return await repository.AllReadonly<Post>()
+                .Select(x => new PostInfoModel(
+                    x.Id,
+                    x.Content,
+                    x.UserId,
+                    x.CreatedDate,
+                    Convert.ToBase64String(x.Image),
+                    (PostStatus)Enum.Parse(typeof(PostStatus), x.Status)))
+                .ToListAsync();
         }
 
-        public Task<PostPageModel> GetPostsForPageAsync(int currentPage = 1)
+        public async Task<PostInfoModel?> GetPostByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var post = await repository.GetByIdAsync<Post>(id);
+
+            if (post == null)
+                return null;
+
+            return new PostInfoModel(
+                post.Id,
+                post.Content,
+                post.UserId,
+                post.CreatedDate,
+                Convert.ToBase64String(post.Image),
+                (PostStatus)Enum.Parse(typeof(PostStatus), post.Status));
+        }
+
+        public async Task<PostPageModel> GetPostsForPageAsync(int currentPage = 1)
+        {
+            var model = new PostPageModel();
+
+            int formula = (currentPage - 1) * ValidationConstants.MaxPostsPerPage;
+
+            if (currentPage <= 1)
+            {
+                formula = 0;
+            }
+
+            model.Posts = await GetAllPostsAsync();
+
+            model.PagesCount = Math.Ceiling((model.Posts.Count() / Convert.ToDouble(ValidationConstants.MaxPostsPerPage)));
+
+            model.Posts = model.Posts
+               .Skip(formula)
+               .Take(ValidationConstants.MaxPostsPerPage);
+
+            model.CurrentPage = currentPage;
+
+            return model;
         }
     }
 }

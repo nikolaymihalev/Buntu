@@ -7,5 +7,7 @@
 
         public const int ContentMinLength = 2;
         public const int ContentMaxLength = 1000;
+
+        public const int MaxPostsPerPage = 15;
     }
 }
