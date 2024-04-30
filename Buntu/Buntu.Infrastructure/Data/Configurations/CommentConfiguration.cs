@@ -14,7 +14,7 @@ namespace Buntu.Infrastructure.Data.Configurations
                 .WithMany(x => x.Comments)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(new { seed.NiceCar, seed.Nature });
+            builder.HasData(new []{ seed.NiceCar, seed.Nature });
         }
     }
 }

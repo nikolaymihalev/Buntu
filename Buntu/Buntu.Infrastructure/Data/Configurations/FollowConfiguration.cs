@@ -16,11 +16,11 @@ namespace Buntu.Infrastructure.Data.Configurations
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Follower)
-                .WithMany(x => x.Followers)
-                .HasForeignKey(x=>x.FollowerId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .WithMany(x => x.Followers)
+               .HasForeignKey(x => x.FollowerId)
+               .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(new { seed.Followee, seed.Follower });
+            builder.HasData(new []{ seed.Followee, seed.Follower });
         }
     }
 }

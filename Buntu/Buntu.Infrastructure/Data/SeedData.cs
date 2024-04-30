@@ -5,6 +5,16 @@ namespace Buntu.Infrastructure.Data
 {
     internal class SeedData
     {
+        public SeedData()
+        {
+            SeedUsers();
+            SeedPosts();
+            SeedComments();
+            SeedLikes();
+            SeedFollows();
+            SeedNotifications();
+        }
+
         public ApplicationUser Ivan { get; private set; } = null!;
         public ApplicationUser Petur { get; private set; } = null!;
         public Post Holiday { get; private set; } = null!;
@@ -16,18 +26,7 @@ namespace Buntu.Infrastructure.Data
         public Follow Followee { get; private set; } = null!;
         public Follow Follower { get; private set; } = null!;
         public Notification Like { get; private set; } = null!;
-        public Notification Comment { get; private set; } = null!;
-
-
-        public SeedData()
-        {
-            SeedUsers();
-            SeedPosts();
-            SeedComments();
-            SeedLikes();
-            SeedFollows();
-            SeedNotifications();
-        }
+        public Notification Comment { get; private set; } = null!;        
 
         private void SeedUsers() 
         {
@@ -35,7 +34,7 @@ namespace Buntu.Infrastructure.Data
 
             Ivan = new ApplicationUser()
             {
-                Id = "c85a8e02-947d-408e-a604-1940eff71717",
+                Id = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 UserName = "Ivan123",
                 NormalizedUserName = "IVAN123",
                 Email = "ivanivanov@gmail.com",
@@ -47,7 +46,7 @@ namespace Buntu.Infrastructure.Data
 
             Petur = new ApplicationUser()
             {
-                Id = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                Id = "68106d58-f54a-409c-92da-9184a75d55f7",
                 UserName = "Petur123",
                 NormalizedUserName = "PETUR123",
                 Email = "peturpetrov@gmail.com",
@@ -67,7 +66,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 1,
                 Content = "I'm in the Caribbean islands. It is very beautiful!",
-                UserId = "c85a8e02-947d-408e-a604-1940eff71717",
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 CreatedDate = Convert.ToDateTime("29/04/2024"),
                 Image = File.ReadAllBytes(Path.Combine(@"Images", "Caribbean.jpg")),
                 Status = "Happy"
@@ -77,7 +76,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 2,
                 Content = "Check out my new lamborghini. It is the new model!",
-                UserId = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
                 CreatedDate = Convert.ToDateTime("27/04/2024"),
                 Image = File.ReadAllBytes(Path.Combine(@"Images", "Lamborghini.jpg")),
                 Status = "Happy"
@@ -91,7 +90,7 @@ namespace Buntu.Infrastructure.Data
                 Id = 1,
                 Content = "Cool car! I want one too!",
                 PostId = 2,
-                UserId = "c85a8e02-947d-408e-a604-1940eff71717",
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 CreatedDate = Convert.ToDateTime("28/04/2024"),
             };
 
@@ -100,7 +99,7 @@ namespace Buntu.Infrastructure.Data
                 Id = 2,
                 Content = "What a beautiful nature!",
                 PostId = 1,
-                UserId = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
                 CreatedDate = Convert.ToDateTime("30/04/2024"),
             };
         }
@@ -111,7 +110,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 1,
                 PostId = 1,
-                UserId = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
                 Variant = "Heart"
             };
 
@@ -119,7 +118,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 2,
                 PostId = 2,
-                UserId = "c85a8e02-947d-408e-a604-1940eff71717",
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 Variant = "Thumb"
             };
         }
@@ -129,15 +128,15 @@ namespace Buntu.Infrastructure.Data
             Followee = new Follow()
             {
                 Id = 1,
-                UserId = "f32b7b13-046c-4652-9f89-900c33eabda2",
-                FollowerId = "c85a8e02-947d-408e-a604-1940eff71717"
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
+                FollowerId = "bbd4b588-917f-4634-8142-08f54ee760a1"
             };
 
             Follower = new Follow()
             {
                 Id = 2,
-                UserId = "c85a8e02-947d-408e-a604-1940eff71717",
-                FollowerId = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
+                FollowerId = "68106d58-f54a-409c-92da-9184a75d55f7",
             };
         }
 
@@ -146,7 +145,7 @@ namespace Buntu.Infrastructure.Data
             Like = new Notification()
             {
                 Id = 1,
-                UserId = "c85a8e02-947d-408e-a604-1940eff71717",
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 Type = "Like",
                 RelatedId = 1,
                 IsRead = false
@@ -155,7 +154,7 @@ namespace Buntu.Infrastructure.Data
             Comment = new Notification()
             {
                 Id = 2,
-                UserId = "f32b7b13-046c-4652-9f89-900c33eabda2",
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
                 Type = "Comment",
                 RelatedId = 1,
                 IsRead = false

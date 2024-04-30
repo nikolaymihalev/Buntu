@@ -1,6 +1,5 @@
 using Buntu.Infrastructure.Data;
 using Buntu.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

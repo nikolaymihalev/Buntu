@@ -10,7 +10,7 @@ namespace Buntu.Infrastructure.Data.Configurations
         {
             var seed = new SeedData();
 
-            builder.HasData(new { seed.Holiday, seed.Car });
+            builder.HasData(new []{ seed.Holiday, seed.Car });
         }
     }
 }

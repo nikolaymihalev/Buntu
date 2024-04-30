@@ -14,7 +14,7 @@ namespace Buntu.Infrastructure.Data.Configurations
                 .WithMany(x => x.Likes)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(new { seed.Heart, seed.Thumb });
+            builder.HasData(new []{ seed.Heart, seed.Thumb });
         }
     }
 }
