@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Buntu.Infrastructure.Constants;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,7 @@ namespace Buntu.Infrastructure.Data.Models
 
         [Required]
         [Comment("Post content")]
+        [MaxLength(ValidationConstants.ContentMaxLength)]
         public string Content { get; set; } = string.Empty;
 
         [Required]
