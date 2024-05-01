@@ -16,7 +16,7 @@ namespace Buntu.Core.Services
             repository = _repository;
         }
 
-        public async Task AddFollowerAsync(FollowInfoModel model)
+        public async Task AddFollowerAsync(FollowModel model)
         {
             var entity = new Follow()
             {
@@ -35,11 +35,11 @@ namespace Buntu.Core.Services
             }
         }
 
-        public async Task<IEnumerable<FollowInfoModel>> GetUserFollowersAsync(string userId)
+        public async Task<IEnumerable<FollowModel>> GetUserFollowersAsync(string userId)
         {
             return await repository.AllReadonly<Follow>()
                 .Where(x=>x.UserId == userId)
-                .Select(x=> new FollowInfoModel() 
+                .Select(x=> new FollowModel() 
                 {
                     Id = x.Id,
                     UserId = x.UserId,

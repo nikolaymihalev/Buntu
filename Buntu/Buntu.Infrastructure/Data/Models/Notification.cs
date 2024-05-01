@@ -11,15 +11,16 @@ namespace Buntu.Infrastructure.Data.Models
         [Comment("Notification identifier")]
         public int Id { get; set; }
 
+        [Required]
         [Comment("User identifier")]
         public string UserId { get; set; } = string.Empty;
 
+        [Required]
         [Comment("Notification type")]
         public string Type { get; set; } = string.Empty;
 
-        [NotMapped]
         [Comment("Related type identifier (like, comment, follow)")]
-        public object RelatedId { get; set; } = null!;
+        public int RelatedId { get; set; }
 
         [Comment("Is notification read")]
         public bool IsRead { get; set; }

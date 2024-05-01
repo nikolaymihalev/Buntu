@@ -1,9 +1,9 @@
 ﻿namespace Buntu.Core.Models.Follow
 {
     /// <summary>
-    /// Model for follower information
+    /// Model for follow
     /// </summary>
-    public class FollowInfoModel
+    public class FollowModel
     {
         /// <summary>
         /// Follow identifier
