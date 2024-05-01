@@ -30,6 +30,6 @@ namespace Buntu.Core.Models.Like
         /// <summary>
         /// Collection of like variants
         /// </summary>
-        public IEnumerable<LikeVariant> Variants { get; set; } = new List<LikeVariant>();
+        public IList<LikeVariant> Variants { get; set; } = new List<LikeVariant>();
     }
 }

@@ -25,7 +25,7 @@ namespace Buntu.Core.Services
                 UserId = model.UserId,
                 CreatedDate = DateTime.Now,
                 Image = model.Image,
-                Status = model.Status.ToString()
+                Status = model.Statuses[model.Status].ToString()
             };
 
             try
@@ -45,7 +45,7 @@ namespace Buntu.Core.Services
 
             if (post == null) 
             {
-                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+                throw new ArgumentException(ErrorMessageConstants.DoesntExistErrorMessage);
             }
 
             await repository.DeleteAsync<Post>(post);
@@ -62,7 +62,7 @@ namespace Buntu.Core.Services
 
             post.Content = model.Content;
             post.Image = model.Image;
-            post.Status = model.Status.ToString();
+            post.Status = model.Statuses[model.Status].ToString();
 
             await repository.SaveChangesAsync();
         }

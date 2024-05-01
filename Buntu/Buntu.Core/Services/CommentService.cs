@@ -43,7 +43,7 @@ namespace Buntu.Core.Services
 
             if (comment is null) 
             {
-                throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
+                throw new ArgumentException(ErrorMessageConstants.DoesntExistErrorMessage);
             }
 
             await repository.DeleteAsync<Comment>(id);
