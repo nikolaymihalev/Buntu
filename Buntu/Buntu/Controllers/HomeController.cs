@@ -15,6 +15,9 @@ namespace Buntu.Controllers
 
         public IActionResult Index()
         {
+            if(User?.Identity?.IsAuthenticated==false)
+                return View();
+
             return View();
         }
 

@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}

@@ -1,8 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Buntu";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="center-screen">
+    <div class="card mb-3" style="max-width: auto;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="~/images/phones.png" class="img-fluid rounded-start" alt="Phones" />
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="card-body">
+                    <h2>Welcome to Buntu!</h2>
+                    <h5 class ="text-start">
+                        Explore a world where every connection counts.
+                        At Buntu, we believe in the power of relationships. Whether you're here to reconnect with old friends, forge new bonds, or simply share your passions with like-minded individuals, you've found your digital home.
+                    </h5><br />
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info text-white" style="width: 300px">Register</a>
+                    <p>Already have an account. <a asp-area="Identity" asp-page="/Account/Register" class="text-dark">Log in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
