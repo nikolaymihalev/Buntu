@@ -27,3 +27,88 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+.post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .post-container img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+.post-details h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.post-details p {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.likes-comments {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .likes-comments .likes {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .likes-comments .comments {
+        font-size: 1rem;
+        color: #333;
+    }
+
+.like-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+    .like-btn i {
+        color: #888;
+    }
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-bottom: 15px;
+}
+
+    .comment .user {
+        font-weight: bold;
+    }
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+    .user-info .post-profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .user-info .post-username {
+        font-weight: bold;
+        margin-right: 10px;
+    }

@@ -3,6 +3,7 @@ using Buntu.Core.Models.Comment;
 using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Constants;
 using Buntu.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buntu.Core.Services
@@ -11,7 +12,8 @@ namespace Buntu.Core.Services
     {
         private readonly IRepository repository;
 
-        public CommentService(IRepository _repository)
+        public CommentService(
+            IRepository _repository)
         {
             repository = _repository;
         }
@@ -75,6 +77,7 @@ namespace Buntu.Core.Services
                 comment.Content,
                 comment.PostId,
                 comment.UserId,
+                "",
                 comment.CreatedDate);
         }
 
@@ -87,6 +90,7 @@ namespace Buntu.Core.Services
                     x.Content,
                     x.PostId,
                     x.UserId,
+                    x.User.UserName,
                     x.CreatedDate))
                 .ToListAsync();
         }

@@ -79,6 +79,18 @@ namespace Buntu.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<int> GetLikesCountForPostAsync(int postId)
+        {
+            return await repository.AllReadonly<Like>()
+                .Where(x => x.PostId == postId)
+                .Select(x => new LikeInfoModel(
+                    x.Id,
+                    x.PostId,
+                    x.UserId,
+                    (LikeVariant)Enum.Parse(typeof(LikeVariant), x.Variant)))
+                .CountAsync();
+        }
+
         public async Task RemoveLikeAsync(int id)
         {
             var like = await repository.GetByIdAsync<Like>(id);

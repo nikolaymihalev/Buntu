@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PostInfoModel>
+
+@if (Model.Any())
+{
+    <div class="text-center col">
+        @foreach (var p in Model)
+        {
+            <div class="post-container">
+                <div class="user-info">
+                    <img class="post-profile-img" src="data:image/png;base64,@p.UserProfileImage" alt="Image">
+                    <h5 class="post-username">@p.Username</h5>
+                </div>                
+                <div class="post-details">
+                    <h2 class="text-start">@p.Content</h2>
+                </div>
+                <img src="data:image/png;base64,@p.Image" alt="Image" style="width: 550px; height: 400px;">
+                <div class="post-details">
+                    <h5 class="text-start">@p.LikesCount likes</h5>
+                    @if (p.LastCommentUsername != null && p.LastCommentContent != null)
+                    {
+                        <div class="text-start">
+                            <p class="mb-0 text-dark"><span class="fw-bold text-dark">@p.LastCommentUsername </span>@p.LastCommentContent</p>
+                        </div>                        
+                    }
+                </div>
+            </div><br />
+        }
+    </div>
+}
+@if (Model.Any() == false)
+{
+    <h4 class="text-center">No result!</h4>
+}

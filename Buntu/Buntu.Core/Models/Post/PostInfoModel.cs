@@ -1,4 +1,5 @@
 ﻿using Buntu.Core.Enums;
+using Buntu.Core.Models.Comment;
 
 namespace Buntu.Core.Models.Post
 {
@@ -11,16 +12,26 @@ namespace Buntu.Core.Models.Post
             int id,
             string content,
             string userId,
+            string username,
             DateTime creationDate,
             string image,
-            PostStatus status)
+            string status,
+            string userProfileImage,
+            int likesCount,
+            string lastCommentUsername,
+            string lastCommentContent)
         {
             Id = id;
             Content = content;
             UserId = userId;
+            Username = username;
             CreatedDate = creationDate;
             Image = image;
             Status = status;
+            UserProfileImage = userProfileImage;
+            LikesCount = likesCount;
+            LastCommentUsername = lastCommentUsername;
+            LastCommentContent = lastCommentContent;
         }
 
         /// <summary>
@@ -39,6 +50,11 @@ namespace Buntu.Core.Models.Post
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>
+        /// User username
+        /// </summary>
+        public string Username { get; set; }
+
+        /// <summary>
         /// Date of creation of post 
         /// </summary>
         public DateTime CreatedDate { get; set; }
@@ -51,6 +67,26 @@ namespace Buntu.Core.Models.Post
         /// <summary>
         /// Post status
         /// </summary>
-        public PostStatus Status { get; set; } 
+        public string Status { get; set; }
+
+        /// <summary>
+        /// User profile image
+        /// </summary>
+        public string UserProfileImage { get; set; }
+
+        /// <summary>
+        /// Post likes count
+        /// </summary>
+        public int LikesCount { get; set; }
+
+        /// <summary>
+        /// Post last comment user identifier
+        /// </summary>
+        public string? LastCommentUsername { get; set; }
+
+        /// <summary>
+        /// Post last comment content
+        /// </summary>
+        public string? LastCommentContent { get; set; }
     }
 }

@@ -10,12 +10,14 @@
             string content,
             int postId,
             string userId,
+            string username,
             DateTime creationDate)
         {
             Id = id;
             Content = content;
             PostId = postId;
             UserId = userId;
+            Username = username;
             CreatedDate = creationDate;
         }
 
@@ -38,6 +40,11 @@
         /// User identifier
         /// </summary>
         public string UserId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// User username
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         /// Date of creation

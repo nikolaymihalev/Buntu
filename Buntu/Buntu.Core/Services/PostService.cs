@@ -1,9 +1,11 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Enums;
+using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.Post;
 using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Constants;
 using Buntu.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buntu.Core.Services
@@ -11,10 +13,20 @@ namespace Buntu.Core.Services
     public class PostService : IPostService
     {
         private readonly IRepository repository;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly ILikeService likeService;
+        private readonly ICommentService commentService;
 
-        public PostService(IRepository _repository)
+        public PostService(
+            IRepository _repository,
+            UserManager<ApplicationUser> _userManager,
+            ILikeService _likeService,
+            ICommentService _commentService)
         {
             repository = _repository;
+            userManager = _userManager;
+            likeService = _likeService;
+            commentService = _commentService;
         }
 
         public async Task AddPostAsync(PostFormModel model)
@@ -67,17 +79,82 @@ namespace Buntu.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<PostInfoModel>> GetAllPostsAsync()
+        public async Task<IEnumerable<PostInfoModel>> GetAllUserPostsAsync(string userId)
         {
-            return await repository.AllReadonly<Post>()
+            var model = await repository.AllReadonly<Post>()
+                .Where(x=>x.UserId==userId)
                 .Select(x => new PostInfoModel(
                     x.Id,
                     x.Content,
                     x.UserId,
+                    "",
                     x.CreatedDate,
                     Convert.ToBase64String(x.Image),
-                    (PostStatus)Enum.Parse(typeof(PostStatus), x.Status)))
+                    x.Status,
+                    "",
+                    likeService.GetLikesCountForPostAsync(x.Id).Result,
+                    "",
+                    ""))
                 .ToListAsync();
+
+            foreach (var item in model)
+            {
+                var user = await userManager.FindByIdAsync(item.UserId);
+                CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(item.Id);
+
+                if (user != null)
+                {
+                    item.UserProfileImage = Convert.ToBase64String(user.ProfileImage);
+                    item.Username = user.UserName;
+                }
+
+                if (lastComment != null)
+                {
+                    item.LastCommentUsername = lastComment.Username;
+                    item.LastCommentContent = lastComment.Content;
+                }
+            }
+
+            return model;
+        }
+
+        public async Task<IEnumerable<PostInfoModel>> GetAllPostsWhithoutUsersAsync(string userId)
+        {
+            var model =  await repository.AllReadonly<Post>()
+                .Where(x => x.UserId != userId)
+                .Select(x => new PostInfoModel(
+                    x.Id,
+                    x.Content,
+                    x.UserId,
+                    "",
+                    x.CreatedDate,
+                    Convert.ToBase64String(x.Image),
+                    x.Status,
+                    "",
+                    likeService.GetLikesCountForPostAsync(x.Id).Result,
+                    "",
+                    ""))                
+                .ToListAsync();
+
+            foreach (var item in model) 
+            {
+                var user = await userManager.FindByIdAsync(item.UserId);
+                CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(item.Id);
+
+                if (user != null)
+                {
+                    item.UserProfileImage = Convert.ToBase64String(user.ProfileImage);
+                    item.Username = user.UserName;
+                }
+
+                if (lastComment != null) 
+                {
+                    item.LastCommentUsername = lastComment.Username;
+                    item.LastCommentContent = lastComment.Content;
+                }
+            }
+
+            return model;
         }
 
         public async Task<PostInfoModel?> GetPostByIdAsync(int id)
@@ -87,16 +164,24 @@ namespace Buntu.Core.Services
             if (post == null)
                 return null;
 
+            var user = await userManager.FindByIdAsync(post.UserId);
+            CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(id);
+
             return new PostInfoModel(
                 post.Id,
                 post.Content,
                 post.UserId,
+                user.UserName,
                 post.CreatedDate,
                 Convert.ToBase64String(post.Image),
-                (PostStatus)Enum.Parse(typeof(PostStatus), post.Status));
+                post.Status,
+                Convert.ToBase64String(user.ProfileImage),
+                likeService.GetLikesCountForPostAsync(id).Result,
+                lastComment.Username,
+                lastComment.Content);
         }
 
-        public async Task<PostPageModel> GetPostsForPageAsync(int currentPage = 1)
+        public async Task<PostPageModel> GetPostsForPageAsync(string? userId = null, int currentPage = 1)
         {
             var model = new PostPageModel();
 
@@ -107,7 +192,7 @@ namespace Buntu.Core.Services
                 formula = 0;
             }
 
-            model.Posts = await GetAllPostsAsync();
+            model.Posts = await GetAllPostsWhithoutUsersAsync(userId);
 
             model.PagesCount = Math.Ceiling((model.Posts.Count() / Convert.ToDouble(ValidationConstants.MaxPostsPerPage)));
 

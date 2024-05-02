@@ -18,7 +18,7 @@ namespace Buntu.Controllers
             if(User?.Identity?.IsAuthenticated==false)
                 return View();
 
-            return View();
+            return RedirectToAction("Home","Post");
         }
 
         public IActionResult Privacy()
