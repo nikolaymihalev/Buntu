@@ -29,7 +29,6 @@ namespace Buntu.Controllers
             }
 
             var model = new RegisterModel();
-
             return View(model);
         }
 
@@ -42,13 +41,26 @@ namespace Buntu.Controllers
                 return View(model);
             }
 
+
             var user = new ApplicationUser()
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                UserName = model.Username
+                UserName = model.Username,
             };
+
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string file = System.IO.Path.Combine(currentDirectory, @"..\..\..\Images\DefaultPicture.png");
+            string filePath = Path.GetFullPath(file);
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+                    user.ProfileImage = br.ReadBytes((int)fs.Length);
+                }
+            }
 
             var result = await userManager.CreateAsync(user, model.Password);
 
@@ -57,7 +69,7 @@ namespace Buntu.Controllers
                 ModelState.AddModelError("", item.Description);
             }
 
-            return View(model);
+            return RedirectToAction("Home", "Post");
         }
 
         [HttpGet]

@@ -39,6 +39,7 @@ namespace Buntu.Core.Models.User
 
         [Compare(nameof(Password))]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; } = null!;
     }
 }
