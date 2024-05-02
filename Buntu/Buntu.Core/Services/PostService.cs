@@ -92,7 +92,7 @@ namespace Buntu.Core.Services
                     Convert.ToBase64String(x.Image),
                     x.Status,
                     "",
-                    likeService.GetLikesCountForPostAsync(x.Id).Result,
+                    0,
                     "",
                     ""))
                 .ToListAsync();
@@ -113,6 +113,8 @@ namespace Buntu.Core.Services
                     item.LastCommentUsername = lastComment.Username;
                     item.LastCommentContent = lastComment.Content;
                 }
+
+                item.LikesCount = await likeService.GetLikesCountForPostAsync(item.Id);
             }
 
             return model;
@@ -131,7 +133,7 @@ namespace Buntu.Core.Services
                     Convert.ToBase64String(x.Image),
                     x.Status,
                     "",
-                    likeService.GetLikesCountForPostAsync(x.Id).Result,
+                    0,
                     "",
                     ""))                
                 .ToListAsync();
@@ -152,6 +154,8 @@ namespace Buntu.Core.Services
                     item.LastCommentUsername = lastComment.Username;
                     item.LastCommentContent = lastComment.Content;
                 }
+
+                item.LikesCount = await likeService.GetLikesCountForPostAsync(item.Id);
             }
 
             return model;
@@ -166,6 +170,7 @@ namespace Buntu.Core.Services
 
             var user = await userManager.FindByIdAsync(post.UserId);
             CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(id);
+            int likesCount = await likeService.GetLikesCountForPostAsync(id);
 
             return new PostInfoModel(
                 post.Id,
@@ -176,7 +181,7 @@ namespace Buntu.Core.Services
                 Convert.ToBase64String(post.Image),
                 post.Status,
                 Convert.ToBase64String(user.ProfileImage),
-                likeService.GetLikesCountForPostAsync(id).Result,
+                likesCount,
                 lastComment.Username,
                 lastComment.Content);
         }

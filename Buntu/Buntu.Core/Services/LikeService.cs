@@ -64,7 +64,7 @@ namespace Buntu.Core.Services
                 like.Id,
                 like.PostId,
                 like.UserId,
-                (LikeVariant)Enum.Parse(typeof(LikeVariant), like.Variant));
+                like.Variant);
         }
 
         public async Task<IEnumerable<LikeInfoModel>> GetLikesForPostAsync(int postId)
@@ -75,7 +75,7 @@ namespace Buntu.Core.Services
                     x.Id,
                     x.PostId,
                     x.UserId,
-                    (LikeVariant)Enum.Parse(typeof(LikeVariant), x.Variant)))
+                    x.Variant))
                 .ToListAsync();
         }
 
@@ -87,7 +87,7 @@ namespace Buntu.Core.Services
                     x.Id,
                     x.PostId,
                     x.UserId,
-                    (LikeVariant)Enum.Parse(typeof(LikeVariant), x.Variant)))
+                    x.Variant))
                 .CountAsync();
         }
 

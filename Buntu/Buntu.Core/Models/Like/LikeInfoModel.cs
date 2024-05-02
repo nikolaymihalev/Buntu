@@ -11,7 +11,7 @@ namespace Buntu.Core.Models.Like
             int id,
             int postId,
             string userId,
-            LikeVariant variant)
+            string variant)
         {
             Id = id;
             PostId = postId;
@@ -37,6 +37,6 @@ namespace Buntu.Core.Models.Like
         /// <summary>
         /// Like variant
         /// </summary>
-        public LikeVariant Variant { get; set; } 
+        public string Variant { get; set; } 
     }
 }
