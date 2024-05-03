@@ -2,7 +2,7 @@
 {
     public enum LikeVariant
     {
-        Like,
+        Thumb,
         Love,
         Haha,
         Wow,

@@ -10,5 +10,7 @@ namespace Buntu.Core.Contracts
         Task<LikeInfoModel?> GetLikeByIdAsync(int id);
         Task<IEnumerable<LikeInfoModel>> GetLikesForPostAsync(int postId);
         Task<int> GetLikesCountForPostAsync(int postId);
+        Task<bool> IsPostLikedByUserAsync(int postId, string userId);
+        Task<string> GetLikeVariantAsync(int postId, string userId);
     }
 }

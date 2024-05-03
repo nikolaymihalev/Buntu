@@ -1,4 +1,5 @@
 ﻿@model PostInfoModel
+@inject ILikeService likeService 
 
 <div class="post-container">
     <div class="user-info">
@@ -9,7 +10,26 @@
         <h2 class="text-start">@Model.Content</h2>
     </div>
     <img src="data:image/png;base64,@Model.Image" alt="Image" style="width: 550px; height: 400px;">
-    <div class="post-details">
+    <div class="post-buttons">
+        @{
+            if (await likeService.IsPostLikedByUserAsync(Model.Id, User.Id()) == false)
+            {
+                <a class="post-buttons-link">
+                    <img src="~/images/blackbuttons/heart.png" />
+                </a>                
+            }
+            else
+            {
+                string variant = await likeService.GetLikeVariantAsync(Model.Id, User.Id());
+                string image = variant + ".png";
+                <a class="post-buttons-link" asp-action="Unlike" asp-controller="Post">
+                    <img src="~/images/likes/@image" />
+                    <span class="fw-bold text-dark">@variant</span>
+                </a>
+            }
+        }        
+        <a class="post-buttons-link"><img src="~/images/BlackButtons/comment.png" /></a>
+        <a class="post-buttons-link"><img src="~/images/BlackButtons/favorite.png" /></a>
     </div>
     <div class="post-details">
         <h5 class="text-start">@Model.LikesCount likes</h5>

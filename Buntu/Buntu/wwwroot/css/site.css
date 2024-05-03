@@ -41,6 +41,24 @@ body {
         display: block;
         margin-bottom: 15px;
     }
+.post-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.post-buttons-link {
+    padding: 5px 10px;
+    display: flex;
+    text-decoration: none;
+}
+    .post-buttons-link img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    .post-buttons-link span {
+        margin-right: 10px;
+    }
 
 .post-details h2 {
     font-size: 1.2rem;
@@ -52,47 +70,6 @@ body {
     color: #888;
     margin-bottom: 20px;
 }
-
-.likes-comments {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-    .likes-comments .likes {
-        font-size: 1rem;
-        color: #333;
-    }
-
-    .likes-comments .comments {
-        font-size: 1rem;
-        color: #333;
-    }
-
-.like-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-
-    .like-btn i {
-        color: #888;
-    }
-
-.comments-section {
-    margin-top: 20px;
-}
-
-.comment {
-    margin-bottom: 15px;
-}
-
-    .comment .user {
-        font-weight: bold;
-    }
-
 .user-info {
     display: flex;
     align-items: center;

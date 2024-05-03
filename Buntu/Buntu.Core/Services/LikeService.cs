@@ -104,5 +104,27 @@ namespace Buntu.Core.Services
 
             await repository.SaveChangesAsync();
         }
+
+        public async Task<bool> IsPostLikedByUserAsync(int postId, string userId)
+        {
+            var entity = await repository.AllReadonly<Like>()
+                .FirstOrDefaultAsync<Like>(x => x.PostId == postId && x.UserId == userId);
+
+            if (entity is null)
+                return false;
+
+            return true;
+        }
+
+        public async Task<string> GetLikeVariantAsync(int postId, string userId)
+        {
+            var entity = await repository.AllReadonly<Like>()
+                .FirstOrDefaultAsync<Like>(x => x.PostId == postId && x.UserId == userId);
+
+            if (entity != null)
+                return entity.Variant;
+
+            return string.Empty;
+        }
     }
 }

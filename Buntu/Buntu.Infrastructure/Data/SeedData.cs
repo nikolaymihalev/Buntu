@@ -111,7 +111,7 @@ namespace Buntu.Infrastructure.Data
                 Id = 1,
                 PostId = 1,
                 UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
-                Variant = "Heart"
+                Variant = "Love"
             };
 
             Thumb = new Like()
