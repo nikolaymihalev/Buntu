@@ -56,16 +56,16 @@ namespace Buntu.Core.Services
             var like = await repository.AllReadonly<Like>()
                 .FirstOrDefaultAsync<Like>(x => x.PostId == postId && x.UserId == userId);
 
-            if (like is null) 
+            if (like != null) 
             {
-                throw new ArgumentException(ErrorMessageConstants.DoesntExistErrorMessage);
-            }
-
-            return new LikeInfoModel(
+                return new LikeInfoModel(
                 like.Id,
                 like.PostId,
                 like.UserId,
                 like.Variant);
+            }
+
+            return null;
         }
 
         public async Task<IEnumerable<LikeInfoModel>> GetLikesForPostAsync(int postId)

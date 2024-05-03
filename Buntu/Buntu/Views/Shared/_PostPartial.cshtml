@@ -23,8 +23,9 @@
                     {
                         var like = await likeService.GetLikeByIdAsync(Model.Id, User.Id());
                         imageValue = "likes/"+like.Variant+".png";
+                       
                     }
-                    <button class="like-btn">
+                    <button class="like-btn" data-post-id="@Model.Id">
                         <img class="like-image-@Model.Id" src="~/images/@imageValue" />
                     </button>
                     <div class="reaction-form">
@@ -54,7 +55,9 @@
         <a class="post-buttons-link"><img src="~/images/BlackButtons/favorite.png" /></a>
     </div>
     <div class="post-details">
-        <h5 class="text-start">@Model.LikesCount likes</h5>
+        <div class ="text-start">
+            <h5 class="post-likescount-@Model.Id">@Model.LikesCount likes</h5>
+        </div>
         @if (Model.LastCommentUsername != null && Model.LastCommentContent != null)
         {
             <div class="text-start">

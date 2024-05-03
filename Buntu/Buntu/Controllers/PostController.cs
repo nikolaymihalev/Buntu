@@ -30,6 +30,7 @@ namespace Buntu.Controllers
         public async Task<IActionResult> Like(string variant,int postId) 
         {
             int value = 0;
+            string operation = "";
 
             switch (variant) 
             {
@@ -52,6 +53,7 @@ namespace Buntu.Controllers
                     Variant = value
                 };
                 await likeService.EditLikeAsync(entity);
+                operation = "edit";
             }
             else 
             {
@@ -64,6 +66,7 @@ namespace Buntu.Controllers
                         Variant = value
                     };
                     await likeService.AddLikeAsync(entity);
+                    operation = "add";
                 }
                 catch (Exception)
                 {
@@ -71,10 +74,10 @@ namespace Buntu.Controllers
 
             }
 
-            return Json(new { success = true });
+            return Json(new { success = true , operation = operation });
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Unlike(int postId) 
         {
             try

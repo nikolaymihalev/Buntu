@@ -15,23 +15,36 @@ $(document).ready(function () {
             type: 'POST',
             data: { postId: postId, variant:variant },
             success: function (response) {
-                var postImage = $('.like-image-'+postId); // Find the post image element
-                postImage.attr('src', '/images/likes/' + variant + '.png');
-            }
+                var postImage = $('.like-image-'+postId); 
+                postImage.attr('src', '/images/likes/' + variant + '.png');     
+
+                if (response.operation === "add") {
+                    var likeCount = $('.post-likescount-' + postId).text();
+
+                    var currentCount = parseInt(likeCount.substring(0, 1)) + 1;
+
+                    $('.post-likescount-' + postId).text(currentCount + " likes");
+                } 
+            },
         });
     });
 
-    $('.unlike-btn').click(function () {
+    $('.like-btn').click(function () {
         var postId = $(this).data('post-id');
         $.ajax({
-            url: '/Post/Home/',
-            type: 'GET',
+            url: '/Post/Unlike',
+            type: 'POST',
+            data: { postId: postId },
             success: function (response) {
-                var postImage = find('.like-image'); // Find the post image element
-                postImage.attr('src', '~/images/blackbuttons/heart.png');
-            },
-            error: function (xhr, status, error) {
-                // Handle error
+                var postImage = $('.like-image-' + postId); // Find the post image element
+                postImage.attr('src', '/images/blackbuttons/heart.png');
+                $('.reaction-form').css('display', 'none');
+
+                var likeCount = $('.post-likescount-' + postId).text();
+
+                var currentCount = parseInt(likeCount.substring(0, 1)) - 1;
+
+                $('.post-likescount-' + postId).text(currentCount + " likes");
             }
         });
     });
