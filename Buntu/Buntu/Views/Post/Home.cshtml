@@ -1,6 +1,21 @@
 ﻿@model PostPageModel
 
-<partial name="_PostPartial" model="Model.Posts" />
+@{
+    if (Model.Posts.Any())
+    {
+        <div class="text-center col">
+            @foreach (var p in Model.Posts)
+            {
+                <partial name="_PostPartial" model="p" />
+                <br />
+            }
+        </div>
+    }
+    else
+    {
+        <h4 class="text-center">No result!</h4>
+    }
+}
 
 <nav>
     <ul class="pagination justify-content-center">
