@@ -42,7 +42,7 @@ $(document).ready(function () {
                     var currentCount = parseInt(likeCount.substring(0, 1)) - 1;
 
                     $('.post-likescount-' + postId).text(currentCount + " likes");
-                }                
+                }        
             }
         });
     });

@@ -94,6 +94,7 @@ body {
     height: 50px;
 }
 
+
 .post-buttons-link:hover .reaction-form {
     display: block;
 }
@@ -107,6 +108,7 @@ body {
     padding: 3px;
     margin-right: 5px;
 }
+
 
 .like-container {
     position: relative;

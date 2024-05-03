@@ -1,7 +1,6 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Models.Like;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using System.Security.Claims;
 
 namespace Buntu.Controllers
