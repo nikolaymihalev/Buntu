@@ -1,6 +1,7 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Models.Like;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System.Security.Claims;
 
 namespace Buntu.Controllers
@@ -80,15 +81,21 @@ namespace Buntu.Controllers
         [HttpPost]
         public async Task<IActionResult> Unlike(int postId) 
         {
+            string operation = "";
             try
             {
-                await likeService.RemoveLikeAsync(postId, User.Id());
+                var like = await likeService.GetLikeByIdAsync(postId, User.Id());
+                if (like != null)
+                {
+                    await likeService.RemoveLikeAsync(postId, User.Id());
+                    operation = "delete";
+                }
             }
             catch (Exception)
             {
             }
 
-            return Json(new { success = true });
+            return Json(new { success = true, operation = operation });
         }
     }
 }

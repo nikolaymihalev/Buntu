@@ -1,8 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-document.querySelector('.like-btn').addEventListener('click', function () {
+﻿document.querySelector('.like-btn').addEventListener('click', function () {
     document.querySelector('.reaction-form').style.display = 'block';
 });
 
@@ -36,15 +32,17 @@ $(document).ready(function () {
             type: 'POST',
             data: { postId: postId },
             success: function (response) {
-                var postImage = $('.like-image-' + postId); // Find the post image element
-                postImage.attr('src', '/images/blackbuttons/heart.png');
-                $('.reaction-form').css('display', 'none');
+                if (response.operation === "delete") {
+                    var postImage = $('.like-image-' + postId);
+                    postImage.attr('src', '/images/blackbuttons/heart.png');
+                    $('.reaction-form').css('display', 'none');
 
-                var likeCount = $('.post-likescount-' + postId).text();
+                    var likeCount = $('.post-likescount-' + postId).text();
 
-                var currentCount = parseInt(likeCount.substring(0, 1)) - 1;
+                    var currentCount = parseInt(likeCount.substring(0, 1)) - 1;
 
-                $('.post-likescount-' + postId).text(currentCount + " likes");
+                    $('.post-likescount-' + postId).text(currentCount + " likes");
+                }                
             }
         });
     });
