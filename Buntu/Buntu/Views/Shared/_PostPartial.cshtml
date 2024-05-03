@@ -14,9 +14,33 @@
         @{
             if (await likeService.IsPostLikedByUserAsync(Model.Id, User.Id()) == false)
             {
-                <a class="post-buttons-link">
-                    <img src="~/images/blackbuttons/heart.png" />
-                </a>                
+                <div class="post-buttons-link"> 
+                    <div class="like-container">
+                        <a class="like-btn">
+                            <img src="~/images/blackbuttons/heart.png" />
+                        </a>
+                        <div class="reaction-form">
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Thumb.png" />
+                            </a>
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Love.png" />
+                            </a>
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Haha.png" />
+                            </a>
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Wow.png" />
+                            </a>
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Sad.png" />
+                            </a>
+                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
+                                <img src="~/images/likes/Angry.png" />
+                            </a>
+                        </div>
+                    </div>                   
+                </div>                
             }
             else
             {
