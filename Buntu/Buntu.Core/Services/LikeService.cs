@@ -23,7 +23,7 @@ namespace Buntu.Core.Services
             {
                 PostId = model.PostId,
                 UserId = model.UserId,
-                Variant = model.Variants[model.Variant].ToString()
+                Variant = ((LikeVariant)model.Variant).ToString()
             };
 
             try
@@ -46,14 +46,15 @@ namespace Buntu.Core.Services
                 throw new ArgumentException(ErrorMessageConstants.InvalidModelErrorMessage);
             }
 
-            like.Variant = model.Variants[model.Variant].ToString();
+            like.Variant = ((LikeVariant)model.Variant).ToString();
 
             await repository.SaveChangesAsync();
         }
 
-        public async Task<LikeInfoModel?> GetLikeByIdAsync(int id)
+        public async Task<LikeInfoModel?> GetLikeByIdAsync(int postId, string userId)
         {
-            var like = await repository.GetByIdAsync<Like>(id);
+            var like = await repository.AllReadonly<Like>()
+                .FirstOrDefaultAsync<Like>(x => x.PostId == postId && x.UserId == userId);
 
             if (like is null) 
             {
@@ -91,16 +92,17 @@ namespace Buntu.Core.Services
                 .CountAsync();
         }
 
-        public async Task RemoveLikeAsync(int id)
+        public async Task RemoveLikeAsync(int postId, string userId)
         {
-            var like = await repository.GetByIdAsync<Like>(id);
+            var like = await repository.AllReadonly<Like>()
+                .FirstOrDefaultAsync(x=>x.PostId==postId && x.UserId == userId);
 
             if(like == null) 
             {
                 throw new ArgumentException(ErrorMessageConstants.DoesntExistErrorMessage);
             }
 
-            await repository.DeleteAsync<Like>(id);
+            await repository.DeleteAsync<Like>(like.Id);
 
             await repository.SaveChangesAsync();
         }

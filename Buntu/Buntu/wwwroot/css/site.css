@@ -46,11 +46,6 @@ body {
     justify-content: space-between;
     margin-top: 20px;
 }
-.post-buttons-link {
-    padding: 5px 10px;
-    display: flex;
-    text-decoration: none;
-}
     .post-buttons-link img {
         width: 30px;
         height: 30px;
@@ -102,10 +97,12 @@ body {
 .post-buttons-link:hover .reaction-form {
     display: block;
 }
-.reaction-btn:hover i {
-    color: #3b5998; /* Facebook blue color */
-}
+
 .reaction-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
     display: inline-block;
     padding: 3px;
     margin-right: 5px;
@@ -114,4 +111,13 @@ body {
 .like-container {
     position: relative;
     display: inline-block;
+}
+.like-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+    display: flex;
+    text-decoration: none;
 }

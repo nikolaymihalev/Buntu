@@ -11,47 +11,45 @@
     </div>
     <img src="data:image/png;base64,@Model.Image" alt="Image" style="width: 550px; height: 400px;">
     <div class="post-buttons">
-        @{
-            if (await likeService.IsPostLikedByUserAsync(Model.Id, User.Id()) == false)
-            {
-                <div class="post-buttons-link"> 
-                    <div class="like-container">
-                        <a class="like-btn">
-                            <img src="~/images/blackbuttons/heart.png" />
-                        </a>
-                        <div class="reaction-form">
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Thumb.png" />
-                            </a>
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Love.png" />
-                            </a>
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Haha.png" />
-                            </a>
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Wow.png" />
-                            </a>
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Sad.png" />
-                            </a>
-                            <a class="reaction-btn" asp-action="Like" asp-controller="Post">
-                                <img src="~/images/likes/Angry.png" />
-                            </a>
-                        </div>
-                    </div>                   
-                </div>                
-            }
-            else
-            {
-                string variant = await likeService.GetLikeVariantAsync(Model.Id, User.Id());
-                string image = variant + ".png";
-                <a class="post-buttons-link" asp-action="Unlike" asp-controller="Post">
-                    <img src="~/images/likes/@image" />
-                    <span class="fw-bold text-dark">@variant</span>
-                </a>
-            }
-        }        
+        <div class="post-buttons-link">
+            <div class="like-container">
+                @{
+                    string imageValue = "";
+                    if (await likeService.IsPostLikedByUserAsync(Model.Id, User.Id()) == false)
+                    {
+                        imageValue = "blackbuttons/heart.png";
+                    }
+                    else
+                    {
+                        var like = await likeService.GetLikeByIdAsync(Model.Id, User.Id());
+                        imageValue = "likes/"+like.Variant+".png";
+                    }
+                    <button class="like-btn">
+                        <img class="like-image-@Model.Id" src="~/images/@imageValue" />
+                    </button>
+                    <div class="reaction-form">
+                        <button class="reaction-btn" data-variant="Thumb" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Thumb.png" />
+                        </button>
+                        <button class="reaction-btn" data-variant="Love" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Love.png" />
+                        </button>
+                        <button class="reaction-btn" data-variant="Haha" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Haha.png" />
+                        </button>
+                        <button class="reaction-btn" data-variant="Wow" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Wow.png" />
+                        </button>
+                        <button class="reaction-btn" data-variant="Sad" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Sad.png" />
+                        </button>
+                        <button class="reaction-btn" data-variant="Angry" data-post-id="@Model.Id">
+                            <img src="~/images/likes/Angry.png" />
+                        </button>
+                    </div>
+                }                
+            </div>
+        </div>     
         <a class="post-buttons-link"><img src="~/images/BlackButtons/comment.png" /></a>
         <a class="post-buttons-link"><img src="~/images/BlackButtons/favorite.png" /></a>
     </div>

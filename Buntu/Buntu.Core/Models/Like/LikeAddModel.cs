@@ -26,10 +26,5 @@ namespace Buntu.Core.Models.Like
         /// Like variant number
         /// </summary>
         public int Variant { get; set; }
-
-        /// <summary>
-        /// Collection of like variants
-        /// </summary>
-        public IList<LikeVariant> Variants { get; set; } = new List<LikeVariant>();
     }
 }
