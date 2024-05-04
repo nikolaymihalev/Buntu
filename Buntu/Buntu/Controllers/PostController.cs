@@ -1,4 +1,5 @@
 ﻿using Buntu.Core.Contracts;
+using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.Like;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -9,13 +10,16 @@ namespace Buntu.Controllers
     {
         private readonly IPostService postService;
         private readonly ILikeService likeService;
+        private readonly ICommentService commentService;
 
         public PostController(
             IPostService _postService, 
-            ILikeService _likeService)
+            ILikeService _likeService,
+            ICommentService _commentService)
         {
             postService = _postService;
             likeService = _likeService;
+            commentService = _commentService;
         }
 
         [HttpGet]
@@ -98,9 +102,28 @@ namespace Buntu.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Comment(int postId) 
+        public async Task<IActionResult> Comment(int postId, string content) 
         {
-            return Json(new { success = true});
+            bool success = false;
+
+            try
+            {
+                var comment = new CommentFormModel()
+                {
+                    Content = content,
+                    PostId = postId,
+                    UserId = User.Id()
+                };
+
+                await commentService.AddCommentAsync(comment);
+                success = true;
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return Json(new { success = success });
         }
     }
 }
