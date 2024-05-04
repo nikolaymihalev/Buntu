@@ -37,5 +37,6 @@ namespace Buntu.Infrastructure.Data.Models
 
         public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
         public IEnumerable<Like> Likes { get; set; } = new List<Like>();
+        public IEnumerable<FavoritePost> FavoritePosts { get; set; } = new List<FavoritePost>();
     }
 }

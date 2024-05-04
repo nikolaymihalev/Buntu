@@ -17,6 +17,7 @@ namespace Buntu.Infrastructure.Data
         public DbSet<Follow> Follows { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<FavoritePost> FavoritesPosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -26,6 +27,7 @@ namespace Buntu.Infrastructure.Data
             builder.ApplyConfiguration(new LikeConfiguration());
             builder.ApplyConfiguration(new FollowConfiguration());
             builder.ApplyConfiguration(new NotificationConfiguration());
+            builder.ApplyConfiguration(new FavoritePostConfiguration());
 
             base.OnModelCreating(builder);
         }
