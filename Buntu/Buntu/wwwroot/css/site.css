@@ -128,3 +128,16 @@ body {
     display: flex;
     align-items: center;
 }
+.comment-button {
+    display: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color: blue;
+    font-weight: bold;
+}
+.last-comment {
+    display: flex;
+    align-items: center;
+}

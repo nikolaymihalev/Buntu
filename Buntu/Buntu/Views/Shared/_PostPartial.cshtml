@@ -60,13 +60,15 @@
         </div>
         @if (Model.LastCommentUsername != null && Model.LastCommentContent != null)
         {
-            <div class="text-start">
-                <p class="mb-0 text-dark"><span class="fw-bold text-dark">@Model.LastCommentUsername </span>@Model.LastCommentContent</p>
-            </div><br />
+            <div class="last-comment">
+                <p class="last-comment-username-@Model.Id" style="color:black; font-weight: bold">@Model.LastCommentUsername</p>
+                <p class="last-comment-content-@Model.Id" style="color:black;">: @Model.LastCommentContent</p>
+            </div>
+            <br />
         }
-        <div class="post-comment" data-post-id="@Model.Id">
-            <textarea rows="1" class="form-control" id="comment-text" placeholder="Add a comment..." style="border:none" oninput="toggleCommentVisibility(this)"></textarea>
-            <button id="comment-button-@Model.Id" style="display:none; border: none; background: none; cursor: pointer; outline: none; color: blue; font-weight: bold;">
+        <div class="post-comment" >
+            <textarea rows="1" class="form-control" id="comment-text-@Model.Id" placeholder="Add a comment..." style="border:none" oninput="toggleCommentVisibility(this)"></textarea>
+            <button class="comment-button" data-post-id="@Model.Id" data-username="@User.Identity?.Name">
                 POST
             </button>
         </div>

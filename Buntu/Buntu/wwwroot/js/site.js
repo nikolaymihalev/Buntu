@@ -46,6 +46,26 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.comment-button').click(function () {
+        var postId = $(this).data('post-id');
+        var username = $(this).data('username');
+        var button = $(this);
+
+        $.ajax({
+            url: '/Post/Comment',
+            type: 'POST',
+            data: { postId: postId },
+            success: function (response) {
+                var commentContent = ": " + $('#comment-text-' + postId).val();
+                $('.last-comment-content-' + postId).text(commentContent);
+                $('.last-comment-username-' + postId).text(username);
+
+                $('#comment-text-' + postId).val("");
+                button.css('display', 'none');
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {

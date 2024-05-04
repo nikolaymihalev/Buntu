@@ -96,5 +96,11 @@ namespace Buntu.Controllers
 
             return Json(new { success = true, operation = operation });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(int postId) 
+        {
+            return Json(new { success = true});
+        }
     }
 }
