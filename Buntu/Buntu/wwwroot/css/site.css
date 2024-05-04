@@ -123,3 +123,8 @@ body {
     display: flex;
     text-decoration: none;
 }
+
+.post-comment {
+    display: flex;
+    align-items: center;
+}

@@ -64,6 +64,12 @@
                 <p class="mb-0 text-dark"><span class="fw-bold text-dark">@Model.LastCommentUsername </span>@Model.LastCommentContent</p>
             </div><br />
         }
-        <textarea rows="1" class="form-control" placeholder="Add a comment..." style="border:none"></textarea>
+        <div class="post-comment" data-post-id="@Model.Id">
+            <textarea rows="1" class="form-control" id="comment-text" placeholder="Add a comment..." style="border:none" oninput="toggleCommentVisibility(this)"></textarea>
+            <button id="comment-button-@Model.Id" style="display:none; border: none; background: none; cursor: pointer; outline: none; color: blue; font-weight: bold;">
+                POST
+            </button>
+        </div>
+        
     </div>
 </div>

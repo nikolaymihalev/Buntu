@@ -47,3 +47,14 @@ $(document).ready(function () {
         });
     });
 });
+
+function toggleCommentVisibility(textarea) {
+    var commentText = textarea.value;
+    var commentBtn = textarea.nextElementSibling;
+
+    if (commentText.trim() !== "") {
+        commentBtn.style.display = "block"; 
+    } else {
+        commentBtn.style.display = "none";
+    }
+}
