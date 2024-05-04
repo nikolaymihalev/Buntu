@@ -83,6 +83,7 @@ namespace Buntu.Core.Services
         {
             var model = await repository.AllReadonly<Post>()
                 .Where(x=>x.UserId==userId)
+                .OrderByDescending(x=>x.CreatedDate)
                 .Select(x => new PostInfoModel(
                     x.Id,
                     x.Content,
@@ -124,6 +125,7 @@ namespace Buntu.Core.Services
         {
             var model =  await repository.AllReadonly<Post>()
                 .Where(x => x.UserId != userId)
+                .OrderByDescending(x => x.CreatedDate)
                 .Select(x => new PostInfoModel(
                     x.Id,
                     x.Content,
