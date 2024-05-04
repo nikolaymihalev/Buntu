@@ -3,7 +3,6 @@ using Buntu.Core.Models.Comment;
 using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Constants;
 using Buntu.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buntu.Core.Services
