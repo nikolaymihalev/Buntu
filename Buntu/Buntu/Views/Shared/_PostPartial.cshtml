@@ -52,7 +52,12 @@
             </div>
         </div>     
         <a class="post-buttons-link"><img src="~/images/BlackButtons/comment.png" /></a>
-        <a class="post-buttons-link"><img src="~/images/BlackButtons/favorite.png" /></a>
+
+        <div class="post-buttons-link">
+            <button class="favorite-btn" data-post-id="@Model.Id">
+                <img src="~/images/BlackButtons/favorite.png" />
+            </button>
+        </div>
     </div>
     <div class="post-details">
         <div class ="text-start">
