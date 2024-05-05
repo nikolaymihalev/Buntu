@@ -1,5 +1,6 @@
 ﻿@model PostInfoModel
 @inject ILikeService likeService 
+@inject IFavoritePostService favoritePostService
 
 <div class="post-container">
     <div class="user-info">
@@ -55,7 +56,18 @@
 
         <div class="post-buttons-link">
             <button class="favorite-btn" data-post-id="@Model.Id">
-                <img class="favorite-img-@Model.Id" src="~/images/BlackButtons/favorite.png" />
+                @{
+                    string favoriteButtonImg = "";
+                    if (await favoritePostService.IsFavoritePostExistsAsync(Model.Id, User.Id()) == true)
+                    {
+                        favoriteButtonImg = "favorite_pressed.png";
+                    }
+                    else
+                    {
+                        favoriteButtonImg = "favorite.png";
+                    }
+                    <img class="favorite-img-@Model.Id" src="~/images/BlackButtons/@favoriteButtonImg" />
+                }
             </button>
         </div>
     </div>
