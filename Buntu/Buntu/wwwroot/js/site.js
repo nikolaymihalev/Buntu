@@ -68,6 +68,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.favorite-btn').click(function () {
+        var postId = $(this).data('post-id');
+
+        $.ajax({
+            url: '/Post/Favorite',
+            type: 'POST',
+            data: { postId: postId },
+            success: function (response) {
+                var postImage = $('.favorite-img-' + postId);
+
+                if (response.success === true) {
+                    postImage.attr('src', '/images/blackbuttons/favorite_pressed.png');
+                } else {
+                    postImage.attr('src', '/images/blackbuttons/favorite.png');
+                }
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {

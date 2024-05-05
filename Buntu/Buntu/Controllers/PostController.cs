@@ -11,15 +11,18 @@ namespace Buntu.Controllers
         private readonly IPostService postService;
         private readonly ILikeService likeService;
         private readonly ICommentService commentService;
+        private readonly IFavoritePostService favoritePostService;
 
         public PostController(
             IPostService _postService, 
             ILikeService _likeService,
-            ICommentService _commentService)
+            ICommentService _commentService,
+            IFavoritePostService _favoritePostService)
         {
             postService = _postService;
             likeService = _likeService;
             commentService = _commentService;
+            favoritePostService = _favoritePostService;
         }
 
         [HttpGet]
@@ -124,6 +127,12 @@ namespace Buntu.Controllers
             }
 
             return Json(new { success = success });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Favorite(int postId) 
+        {
+            return Json(new { success = true });
         }
     }
 }
