@@ -48,6 +48,19 @@ namespace Buntu.Core.Services
             }
         }
 
+        public async Task<bool> IsFavoritePostExistsAsync(int postId, string userId)
+        {
+            var entity = await repository.AllReadonly<FavoritePost>()
+                .FirstOrDefaultAsync(x => x.PostId == postId && x.UserId == userId);
+
+            if (entity != null) 
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<IEnumerable<FavoritePostModel>> GetUserFavoritePostsAsync(string userId)
         {
             var list = await repository.AllReadonly<FavoritePost>()
@@ -104,6 +117,24 @@ namespace Buntu.Core.Services
                 await repository.DeleteAsync<FavoritePost>(id);
                 await repository.SaveChangesAsync();
             }
+        }
+
+        public async Task<FavoritePostModel?> GetFavoritePostAsync(int postId, string userId)
+        {
+            var entity = await repository.AllReadonly<FavoritePost>()
+                .FirstOrDefaultAsync(x => x.PostId == postId && x.UserId == userId);
+
+            if (entity != null) 
+            {
+                return new FavoritePostModel()
+                {
+                    Id = entity.Id,
+                    UserId = userId,
+                    PostId = postId,
+                };
+            }
+
+            return null;
         }
     }
 }
