@@ -1,5 +1,6 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Models.Comment;
+using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -132,7 +133,31 @@ namespace Buntu.Controllers
         [HttpPost]
         public async Task<IActionResult> Favorite(int postId) 
         {
-            return Json(new { success = true });
+            bool success = true;
+
+            if (await favoritePostService.IsFavoritePostExistsAsync(postId, User.Id()) == true)
+            {
+                var fvPost = await favoritePostService.GetFavoritePostAsync(postId, User.Id());
+
+                if (fvPost != null)
+                {
+                    await favoritePostService.RemoveFavoriteAsync(fvPost.Id);
+                }
+
+                success = false;
+            }
+            else 
+            {
+                var newFv = new FavoritePostModel()
+                {
+                    PostId = postId,
+                    UserId = User.Id()
+                };
+
+                await favoritePostService.AddFavoriteAsync(newFv);
+            }            
+
+            return Json(new { success = success });
         }
     }
 }
