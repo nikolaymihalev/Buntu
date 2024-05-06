@@ -94,7 +94,13 @@ $(document).ready(function () {
         $.ajax({
             data: { postId: postId },
             success: function (response) {
-                $('.all-comments-form-' + postId).css('display','block');
+                var commentsForm = $('.all-comments-form-' + postId);
+                if (commentsForm.is(":hidden")) {
+                    commentsForm.css('display', 'block');
+                }
+                else {
+                    commentsForm.css('display', 'none');
+                }
             }
         });
     });
