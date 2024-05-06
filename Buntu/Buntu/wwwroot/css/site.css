@@ -149,3 +149,11 @@ body {
     outline: none;
     padding: 5px 10px;
 }
+
+.all-comments {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+}
