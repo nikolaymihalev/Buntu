@@ -52,7 +52,11 @@
                 }                
             </div>
         </div>     
-        <a class="post-buttons-link"><img src="~/images/BlackButtons/comment.png" /></a>
+        <div class="post-buttons-link">
+            <button class="all-comments" data-post-id="@Model.Id">
+                <img src="~/images/BlackButtons/comment.png" />
+            </button>
+        </div>
 
         <div class="post-buttons-link">
             <button class="favorite-btn" data-post-id="@Model.Id">
