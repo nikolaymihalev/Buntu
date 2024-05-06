@@ -87,6 +87,17 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.all-comments-btn').click(function () {
+        var postId = $(this).data('post-id');
+
+        $.ajax({
+            data: { postId: postId },
+            success: function (response) {
+                $('.all-comments-form-' + postId).css('display','block');
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {
