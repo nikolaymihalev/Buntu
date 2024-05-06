@@ -59,24 +59,26 @@
                 <img src="~/images/BlackButtons/comment.png" />
             </button>
             <div class="all-comments-form">
-                <div class="comments-content">
-                    <h3>Comments</h3>
-                    @{
-                        var postComments = await commentService.GetCommentsForPostAsync(Model.Id);
+                <h3>Comments</h3>
+                @{
+                    var postComments = await commentService.GetCommentsForPostAsync(Model.Id);
 
-                        foreach (var comment in postComments)
-                        {
-                            var commentUser = await userManager.FindByIdAsync(comment.UserId);
-                            var commentUserProfileImage = Convert.ToBase64String(commentUser.ProfileImage);
+                    foreach (var comment in postComments)
+                    {
+                        <div class="comments-content">
+                            @{
+                                var commentUser = await userManager.FindByIdAsync(comment.UserId);
+                                var commentUserProfileImage = Convert.ToBase64String(commentUser.ProfileImage);
 
-                            <div class="user-info">
-                                <img class="user-profile-img" src="data:image/png;base64,@commentUserProfileImage" alt="Image">
-                                <h5 class="user-username">@commentUser.UserName</h5>
-                                <h5 class="user-username">: @comment.Content</h5>
-                            </div>
-                        }
+                                <div class="user-info">
+                                    <img class="user-profile-img" src="data:image/png;base64,@commentUserProfileImage" alt="Image">
+                                    <h5 class="user-username">@commentUser.UserName</h5>
+                                    <h5 class="user-username">: @comment.Content</h5>
+                                </div>
+                            }
+                        </div>
                     }
-                </div>
+                }
             </div>
         </div>
 
