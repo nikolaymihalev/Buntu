@@ -54,6 +54,7 @@
                 }                
             </div>
         </div>     
+        
         <div class="post-buttons-link">
             <button class="all-comments-btn" data-post-id="@Model.Id">
                 <img src="~/images/BlackButtons/comment.png" />
@@ -115,7 +116,9 @@
     </div>
     <div class="post-details">
         <div class ="text-start">
-            <h5 class="post-likescount-@Model.Id">@Model.LikesCount likes</h5>
+            <button class="all-likes-btn" data-post-id="@Model.Id">
+                <h5 class="post-likescount-@Model.Id">@Model.LikesCount likes</h5>
+            </button>
         </div>
         @if (Model.LastCommentUsername != null && Model.LastCommentContent != null)
         {
