@@ -80,6 +80,18 @@ namespace Buntu.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<LikeInfoModel>> GetLikesPerVariantForPostAsync(int postId, string variant)
+        {
+            return await repository.AllReadonly<Like>()
+                .Where(x => x.PostId == postId && x.Variant == variant)
+                .Select(x => new LikeInfoModel(
+                    x.Id,
+                    x.PostId,
+                    x.UserId,
+                    x.Variant))
+                .ToListAsync();
+        }
+
         public async Task<int> GetLikesCountForPostAsync(int postId)
         {
             return await repository.AllReadonly<Like>()
