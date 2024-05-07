@@ -118,6 +118,43 @@
         <div class ="text-start">
             <button class="all-likes-btn" data-post-id="@Model.Id">
                 <h5 class="post-likescount-@Model.Id">@Model.LikesCount likes</h5>
+            </button>            
+        </div>
+        <div class="all-likes-form-@Model.Id" style="display: block;
+                                                    position: fixed;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    left: 0%;
+                                                    top: 10%;
+                                                    width: 100%;
+                                                    height: 80%;
+                                                    overflow: auto;
+                                                    background-color: white;
+                                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <h3 style="margin-top:20px">Likes</h3>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Thumb">
+                <img src="~/images/likes/Thumb.png" />
+            </button>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Love">
+                <img src="~/images/likes/Love.png" />
+            </button>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Haha">
+                <img src="~/images/likes/Haha.png" />
+            </button>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Wow">
+                <img src="~/images/likes/Wow.png" />
+            </button>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Sad">
+                <img src="~/images/likes/Sad.png" />
+            </button>
+
+            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Angry">
+                <img src="~/images/likes/Angry.png" />
             </button>
         </div>
         @if (Model.LastCommentUsername != null && Model.LastCommentContent != null)

@@ -174,3 +174,14 @@ body {
     outline: none;
     padding: 5px 10px;
 }
+
+.likes-variant-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+    width: 60px;
+    height: 60px;
+    margin-right: 3%;
+}
