@@ -133,30 +133,32 @@
                                                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <h3 style="margin-top:20px">Likes</h3>
 
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Thumb">
-                <img src="~/images/likes/Thumb.png" />
-            </button>
+            @for(int i = 1; i <= 6; i++)
+            {
+                string likeButtonVariant = "";
 
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Love">
-                <img src="~/images/likes/Love.png" />
-            </button>
+                switch (i)
+                {
+                    case 1:
+                        likeButtonVariant = "Thumb";break;
+                    case 2:
+                        likeButtonVariant = "Love"; break;
+                    case 3:
+                        likeButtonVariant = "Haha"; break;
+                    case 4:
+                        likeButtonVariant = "Wow"; break;
+                    case 5:
+                        likeButtonVariant = "Sad"; break;
+                    case 6:
+                        likeButtonVariant = "Angry"; break;
+                }
 
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Haha">
-                <img src="~/images/likes/Haha.png" />
-            </button>
+                string imageLikeButtonVariant = likeButtonVariant + ".png";
 
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Wow">
-                <img src="~/images/likes/Wow.png" />
-            </button>
-
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Sad">
-                <img src="~/images/likes/Sad.png" />
-            </button>
-
-            <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Angry">
-                <img src="~/images/likes/Angry.png" />
-            </button>
-
+                <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="@likeButtonVariant">
+                    <img src="~/images/likes/@imageLikeButtonVariant" />
+                </button>
+            }
 
             <button class="all-likes-btn" data-post-id="@Model.Id">
                 <h3>X</h3>
