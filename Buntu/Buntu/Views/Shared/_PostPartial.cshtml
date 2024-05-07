@@ -69,7 +69,7 @@
                                                     overflow: auto;
                                                     background-color: white;
                                                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                <h3>Comments</h3>
+                <h3 style="margin-top:20px">Comments</h3>
                 @{
                     var postComments = await commentService.GetCommentsForPostAsync(Model.Id);
 
@@ -84,14 +84,14 @@
                                     <img class="user-profile-img" src="data:image/png;base64,@commentUserProfileImage" alt="Image">
                                     <h5 class="user-username">@commentUser.UserName</h5>
                                     <h5 class="user-username">: @comment.Content</h5>
-                                </div>
+                                </div>                                           
+                                
                             }
                         </div>
-                    }
-                    
+                    }                    
                 }
                 <button class="all-comments-btn" data-post-id="@Model.Id">
-                    X
+                    <h3>X</h3>
                 </button>
             </div>
         </div>
