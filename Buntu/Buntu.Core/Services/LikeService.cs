@@ -128,5 +128,12 @@ namespace Buntu.Core.Services
 
             return string.Empty;
         }
+
+        public async Task<int> GetLikesVariantCountAsync(int postId, string variant) 
+        {
+            return await repository.AllReadonly<Like>()
+                .Where(x => x.PostId == postId && x.Variant == variant)
+                .CountAsync();
+        }
     }
 }

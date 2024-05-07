@@ -140,7 +140,7 @@
                 switch (i)
                 {
                     case 1:
-                        likeButtonVariant = "Thumb";break;
+                        likeButtonVariant = "Thumb"; break;
                     case 2:
                         likeButtonVariant = "Love"; break;
                     case 3:
@@ -154,9 +154,11 @@
                 }
 
                 string imageLikeButtonVariant = likeButtonVariant + ".png";
+                int likesVariantCount = await likeService.GetLikesVariantCountAsync(Model.Id, likeButtonVariant);
 
                 <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="@likeButtonVariant">
                     <img src="~/images/likes/@imageLikeButtonVariant" />
+                    <h4>@likesVariantCount</h4>
                 </button>
             }
 
