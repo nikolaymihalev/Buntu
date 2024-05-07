@@ -120,7 +120,7 @@
                 <h5 class="post-likescount-@Model.Id">@Model.LikesCount likes</h5>
             </button>            
         </div>
-        <div class="all-likes-form-@Model.Id" style="display: block;
+        <div class="all-likes-form-@Model.Id" style="display: none;
                                                     position: fixed;
                                                     justify-content: center;
                                                     align-items: center;
@@ -156,7 +156,13 @@
             <button class="likes-variant-btn" data-post-id="@Model.Id" data-likes-variant="Angry">
                 <img src="~/images/likes/Angry.png" />
             </button>
+
+
+            <button class="all-likes-btn" data-post-id="@Model.Id">
+                <h3>X</h3>
+            </button>
         </div>
+
         @if (Model.LastCommentUsername != null && Model.LastCommentContent != null)
         {
             <div class="last-comment">

@@ -104,6 +104,23 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.all-likes-btn').click(function () {
+        var postId = $(this).data('post-id');
+
+        $.ajax({
+            data: { postId: postId },
+            success: function (response) {
+                var commentsForm = $('.all-likes-form-' + postId);
+                if (commentsForm.is(":hidden")) {
+                    commentsForm.css('display', 'block');
+                }
+                else {
+                    commentsForm.css('display', 'none');
+                }
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {
