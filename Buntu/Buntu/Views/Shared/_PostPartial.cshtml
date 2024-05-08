@@ -162,6 +162,48 @@
                 </button>
             }
 
+            @for(int i=1;i<=6;i++)
+            {
+                string likesContentVariant = "";
+
+                switch (i)
+                {
+                    case 1:
+                        likesContentVariant = "Thumb"; break;
+                    case 2:
+                        likesContentVariant = "Love"; break;
+                    case 3:
+                        likesContentVariant = "Haha"; break;
+                    case 4:
+                        likesContentVariant = "Wow"; break;
+                    case 5:
+                        likesContentVariant = "Sad"; break;
+                    case 6:
+                        likesContentVariant = "Angry"; break;
+                }
+
+                string imageLikeContentVariant = likesContentVariant + ".png";
+
+                <div class="likes-content-@likesContentVariant.ToLower()">
+                    @{
+                        var likes = await likeService.GetLikesPerVariantForPostAsync(Model.Id, likesContentVariant);
+
+                        foreach (var likeItem in likes)
+                        {
+                            var likeUser = await userManager.FindByIdAsync(likeItem.UserId);
+                            var likeUserProfileImage = Convert.ToBase64String(likeUser.ProfileImage);
+
+                            <div class="user-info">
+                                <img class="user-profile-img" src="data:image/png;base64,@likeUserProfileImage" alt="Image">
+                                <h5 class="user-username">@likeUser.UserName</h5>
+                                <img src="~/images/likes/@imageLikeContentVariant" style="width:50px; height:50px" />
+                            </div>
+                        }
+                    }
+                </div>
+            }
+            
+
             <button class="all-likes-btn" data-post-id="@Model.Id">
                 <h3>X</h3>
             </button>
