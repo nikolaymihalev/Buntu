@@ -5,10 +5,12 @@
 @inject UserManager<ApplicationUser> userManager;
 
 <div class="post-container">
-    <div class="user-info">
-        <img class="user-profile-img" src="data:image/png;base64,@Model.UserProfileImage" alt="Image">
-        <h5 class="user-username">@Model.Username</h5>
-    </div>
+    <a asp-action="Profile" asp-controller="User" asp-route-username="@Model.Username" style="text-decoration: none">
+        <div class="user-info">
+            <img class="user-profile-img" src="data:image/png;base64,@Model.UserProfileImage" alt="Image">
+            <h5 class="user-username">@Model.Username</h5>
+        </div>
+    </a>
     <div class="post-details">
         <h2 class="text-start">@Model.Content</h2>
     </div>
@@ -81,12 +83,13 @@
                                 var commentUser = await userManager.FindByIdAsync(comment.UserId);
                                 var commentUserProfileImage = Convert.ToBase64String(commentUser.ProfileImage);
 
-                                <div class="user-info">
-                                    <img class="user-profile-img" src="data:image/png;base64,@commentUserProfileImage" alt="Image">
-                                    <h5 class="user-username">@commentUser.UserName</h5>
-                                    <h5 class="user-username">: @comment.Content</h5>
-                                </div>                                           
-                                
+                                <a asp-action="Profile" asp-controller="User" asp-route-username="@commentUser.UserName" style="text-decoration: none">
+                                    <div class="user-info">
+                                        <img class="user-profile-img" src="data:image/png;base64,@commentUserProfileImage" alt="Image">
+                                        <h5 class="user-username">@commentUser.UserName</h5>
+                                        <h5 class="user-username">: @comment.Content</h5>
+                                    </div>    
+                                </a>    
                             }
                         </div>
                     }                    
@@ -199,11 +202,13 @@
                             var likeUser = await userManager.FindByIdAsync(likeItem.UserId);
                             var likeUserProfileImage = Convert.ToBase64String(likeUser.ProfileImage);
 
-                            <div class="user-info">
-                                <img class="user-profile-img" src="data:image/png;base64,@likeUserProfileImage" alt="Image">
-                                <h5 class="user-username">@likeUser.UserName :</h5>
-                                <img src="~/images/likes/@imageLikeContentVariant" style="width:35px; height:35px" />
-                            </div>
+                            <a asp-action="Profile" asp-controller="User" asp-route-username="@likeUser.UserName" style="text-decoration: none">
+                                <div class="user-info">
+                                    <img class="user-profile-img" src="data:image/png;base64,@likeUserProfileImage" alt="Image">
+                                    <h5 class="user-username">@likeUser.UserName :</h5>
+                                    <img src="~/images/likes/@imageLikeContentVariant" style="width:35px; height:35px" />
+                                </div>
+                            </a>
                         }
                     }
                 </div>
