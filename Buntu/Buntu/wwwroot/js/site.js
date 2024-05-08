@@ -121,6 +121,18 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.likes-variant-btn').click(function () {
+        var postId = $(this).data('post-id');
+        var variant = $(this).data('likes-variant');
+
+        $.ajax({
+            data: { postId: postId },
+            success: function (response) {                
+                $('.likes-content-' + variant.toLowerCase()).css('display', 'block');                
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {
