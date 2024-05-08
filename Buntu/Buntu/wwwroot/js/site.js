@@ -129,7 +129,8 @@ $(document).ready(function () {
         $.ajax({
             data: { postId: postId },
             success: function (response) {                
-                $('.likes-content-' + variant.toLowerCase()).css('display', 'block');                
+                hideLikesVariantContent(variant)
+                $('.likes-content-' + variant.toLowerCase()).css('display', 'block');
             }
         });
     });
@@ -143,5 +144,56 @@ function toggleCommentVisibility(textarea) {
         commentBtn.style.display = "block"; 
     } else {
         commentBtn.style.display = "none";
+    }
+}
+
+function hideLikesVariantContent(variant) {
+    if (variant === "Thumb") {
+
+        $('.likes-content-love').css('display', 'none');
+        $('.likes-content-haha').css('display', 'none');
+        $('.likes-content-wow').css('display', 'none');
+        $('.likes-content-sad').css('display', 'none');
+        $('.likes-content-angry').css('display', 'none');
+
+    } else if (variant === "Love") {
+
+        $('.likes-content-thumb').css('display', 'none');
+        $('.likes-content-haha').css('display', 'none');
+        $('.likes-content-wow').css('display', 'none');
+        $('.likes-content-sad').css('display', 'none');
+        $('.likes-content-angry').css('display', 'none');
+
+    } else if (variant === "Haha") {
+
+        $('.likes-content-thumb').css('display', 'none');
+        $('.likes-content-love').css('display', 'none');
+        $('.likes-content-wow').css('display', 'none');
+        $('.likes-content-sad').css('display', 'none');
+        $('.likes-content-angry').css('display', 'none');
+
+    } else if (variant === "Wow") {
+
+        $('.likes-content-thumb').css('display', 'none');
+        $('.likes-content-love').css('display', 'none');
+        $('.likes-content-haha').css('display', 'none');
+        $('.likes-content-sad').css('display', 'none');
+        $('.likes-content-angry').css('display', 'none');
+
+    } else if (variant === "Sad") {
+
+        $('.likes-content-thumb').css('display', 'none');
+        $('.likes-content-love').css('display', 'none');
+        $('.likes-content-haha').css('display', 'none');
+        $('.likes-content-wow').css('display', 'none');
+        $('.likes-content-angry').css('display', 'none');
+
+    } else if (variant === "Angry") {
+
+        $('.likes-content-thumb').css('display', 'none');
+        $('.likes-content-love').css('display', 'none');
+        $('.likes-content-haha').css('display', 'none');
+        $('.likes-content-wow').css('display', 'none');
+        $('.likes-content-sad').css('display', 'none');
     }
 }
