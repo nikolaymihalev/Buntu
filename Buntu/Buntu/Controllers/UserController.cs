@@ -118,5 +118,16 @@ namespace Buntu.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(string username) 
+        {
+            var model = await userManager.FindByNameAsync(username);
+
+            if (model == null)
+                return BadRequest();
+
+            return View(model);
+        }
     }
 }
