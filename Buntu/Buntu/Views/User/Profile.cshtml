@@ -10,6 +10,17 @@
 
 @{
     int followersCount = await followService.GetUserFollowersCountAsync(Model.Id);
+    bool isUserFollowed = await followService.IsProfileFollowedByUserAsync(Model.Id, User.Id());
 
     <h5>@followersCount followers</h5>
+
+    if (isUserFollowed)
+    {
+        <button class="unfollow-btn">Unfollow</button>
+    }
+
+    else
+    {
+        <button class="follow-btn">Follow</button>            
+    }
 }
