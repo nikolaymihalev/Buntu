@@ -61,5 +61,12 @@ namespace Buntu.Core.Services
 
             await repository.SaveChangesAsync();
         }
+
+        public async Task<int> GetUserFollowersCountAsync(string userId) 
+        {
+            return await repository.AllReadonly<Follow>()
+                .Where(x => x.UserId == userId)
+                .CountAsync();
+        }
     }
 }

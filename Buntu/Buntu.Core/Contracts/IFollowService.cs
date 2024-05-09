@@ -7,5 +7,6 @@ namespace Buntu.Core.Contracts
         Task AddFollowerAsync(FollowModel model);
         Task RemoveFollowerAsync(int id);
         Task<IEnumerable<FollowModel>> GetUserFollowersAsync(string userId);
+        Task<int> GetUserFollowersCountAsync(string userId);
     }
 }
