@@ -1,5 +1,6 @@
 ﻿@model ApplicationUser
 @inject IFollowService followService
+@inject IPostService postService
 
 <div class="user-info">
     <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(Model.ProfileImage)" alt="Image" style="width:150px; height:150px;">

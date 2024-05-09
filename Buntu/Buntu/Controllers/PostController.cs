@@ -29,7 +29,7 @@ namespace Buntu.Controllers
         [HttpGet]
         public async Task<IActionResult> Home(int currentPage = 1)
         {
-            var model = await postService.GetPostsForPageAsync(User.Id(), currentPage);
+            var model = await postService.GetPostsForPageAsync(User.Id(), false, currentPage);
 
             return View(model);
         }

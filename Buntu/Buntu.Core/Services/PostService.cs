@@ -188,7 +188,7 @@ namespace Buntu.Core.Services
                 lastComment.Content);
         }
 
-        public async Task<PostPageModel> GetPostsForPageAsync(string? userId = null, int currentPage = 1)
+        public async Task<PostPageModel> GetPostsForPageAsync(string userId, bool? isProfilePage = null, int currentPage = 1)
         {
             var model = new PostPageModel();
 
@@ -199,7 +199,14 @@ namespace Buntu.Core.Services
                 formula = 0;
             }
 
-            model.Posts = await GetAllPostsWhithoutUsersAsync(userId);
+            if (isProfilePage == true)
+            {
+                model.Posts = await GetAllUserPostsAsync(userId);
+            }
+            else 
+            {
+                model.Posts = await GetAllPostsWhithoutUsersAsync(userId);
+            }
 
             model.PagesCount = Math.Ceiling((model.Posts.Count() / Convert.ToDouble(ValidationConstants.MaxPostsPerPage)));
 
