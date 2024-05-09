@@ -22,6 +22,13 @@
 
     else
     {
-        <button class="follow-btn">Follow</button>            
+        <button class="follow-btn">Follow</button>
+    }
+
+    var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);
+
+    foreach (var post in posts.Posts)
+    {
+        <partial name="_PostPartial" model="post" />
     }
 }
