@@ -1,6 +1,8 @@
 ﻿@model ApplicationUser
 
 <div class="user-info">
-    <img class="user-profile-img" src="data:image/png;base64,@Model.ProfileImage" alt="Image">
-    <h5 class="user-username">@Model.UserName</h5>
+    <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(Model.ProfileImage)" alt="Image" style="width:150px; height:150px;">
+    <h5 class="user-username" style="font-size:40px">
+        @Model.UserName      
+    </h5>
 </div>
