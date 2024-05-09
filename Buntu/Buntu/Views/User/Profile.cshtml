@@ -11,19 +11,26 @@
 
 @{
     int followersCount = await followService.GetUserFollowersCountAsync(Model.Id);
-    bool isUserFollowed = await followService.IsProfileFollowedByUserAsync(Model.Id, User.Id());
 
-    <h5>@followersCount followers</h5>
+    <h5 class="followers-text">@followersCount followers</h5>
 
-    if (isUserFollowed)
+    if (Model.Id != User.Id())
     {
-        <button class="unfollow-btn">Unfollow</button>
-    }
+        bool isUserFollowed = await followService.IsProfileFollowedByUserAsync(Model.Id, User.Id());
+        string followBtnText = "";
 
-    else
-    {
-        <button class="follow-btn">Follow</button>
-    }
+        if (isUserFollowed)
+        {
+            followBtnText = "Unfollow";
+        }
+
+        else
+        {
+            followBtnText = "Follow";
+        }
+
+        <button class="follow-btn" data-follower-id="@User.Id()" data-user-id="@Model.Id">@followBtnText</button>
+    }    
 
     var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);
 

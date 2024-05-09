@@ -197,13 +197,3 @@ body {
     width: 100px;
     height: 40px;
 }
-
-.unfollow-btn {
-    border-color: white;
-    background: gray;
-    border-radius: 20px;
-    cursor: pointer;
-    color: white;
-    width: 100px;
-    height: 40px;
-}
