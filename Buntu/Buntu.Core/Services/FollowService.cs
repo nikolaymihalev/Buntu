@@ -68,5 +68,16 @@ namespace Buntu.Core.Services
                 .Where(x => x.UserId == userId)
                 .CountAsync();
         }
+
+        public async Task<bool> IsProfileFollowedByUserAsync(string userId, string followerId) 
+        {
+            var entity = await repository.AllReadonly<Follow>()
+                .FirstOrDefaultAsync(x => x.UserId == userId && x.FollowerId == followerId);
+
+            if (entity == null)
+                return false;
+
+            return true;
+        }
     }
 }
