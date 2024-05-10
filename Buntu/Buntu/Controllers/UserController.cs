@@ -141,9 +141,15 @@ namespace Buntu.Controllers
         {
             bool success = true;
 
-            if (await followService.IsProfileFollowedByUserAsync(userId, User.Id()) == true) 
+            if (await followService.IsProfileFollowedByUserAsync(userId, User.Id()) == true)
             {
-                success = false; 
+                var follow = await followService.GetFollowAsync(userId, User.Id());
+                if (follow != null)
+                {
+                    await followService.RemoveFollowerAsync(follow.Id);
+                }
+
+                success = false;
             }
 
             try
