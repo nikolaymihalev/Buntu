@@ -79,5 +79,17 @@ namespace Buntu.Core.Services
 
             return true;
         }
+
+        public async Task<FollowModel?> GetFollowAsync(string userId, string followerId) 
+        {
+            return await repository.AllReadonly<Follow>()
+                .Select(x=> new FollowModel() 
+                {
+                    Id = x.Id,
+                    UserId = x.UserId,
+                    FollowerId = x.FollowerId
+                })
+                .FirstOrDefaultAsync(x => x.UserId == userId && x.FollowerId == followerId);
+        }
     }
 }
