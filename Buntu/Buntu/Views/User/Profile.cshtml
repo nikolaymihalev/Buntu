@@ -12,7 +12,9 @@
 @{
     int followersCount = await followService.GetUserFollowersCountAsync(Model.Id);
 
-    <h5 class="followers-text">@followersCount followers</h5>
+    <button class="followers-btn" data-user-id="@Model.Id">
+        <h5 class="followers-text">@followersCount followers</h5>
+    </button>
 
     if (Model.Id != User.Id())
     {
@@ -41,4 +43,12 @@
     {
         <partial name="_PostPartial" model="post" />
     }
+
+    <div class="user-followers-form">
+        <h3 class="text-center" style="margin-top:20px;">Followers</h3>
+
+        <button class="followers-btn" data-user-id="@Model.Id">
+            <h3>X</h3>
+        </button>
+    </div>
 }
