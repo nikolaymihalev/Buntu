@@ -18,18 +18,21 @@
     {
         bool isUserFollowed = await followService.IsProfileFollowedByUserAsync(Model.Id, User.Id());
         string followBtnText = "";
+        string folBtnBackCol = "";
 
         if (isUserFollowed)
         {
             followBtnText = "Unfollow";
+            folBtnBackCol = "gray";
         }
 
         else
         {
             followBtnText = "Follow";
+            folBtnBackCol = "lightcoral";
         }
 
-        <button class="follow-btn" data-user-id="@Model.Id">@followBtnText</button>
+        <button class="follow-btn" data-user-id="@Model.Id" style="background: @folBtnBackCol">@followBtnText</button>
     }    
 
     var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);

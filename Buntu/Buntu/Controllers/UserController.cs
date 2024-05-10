@@ -151,14 +151,16 @@ namespace Buntu.Controllers
 
                 success = false;
             }
-
-            try
+            else 
             {
-                await followService.AddFollowerAsync(new FollowModel() { UserId = userId, FollowerId = User.Id() });
-            }
-            catch (Exception)
-            {
-            }
+                try
+                {
+                    await followService.AddFollowerAsync(new FollowModel() { UserId = userId, FollowerId = User.Id() });
+                }
+                catch (Exception)
+                {
+                }
+            }            
 
             return Json(new { success = success });
         }
