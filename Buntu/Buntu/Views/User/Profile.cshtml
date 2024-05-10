@@ -1,6 +1,7 @@
 ﻿@model ApplicationUser
 @inject IFollowService followService
 @inject IPostService postService
+@inject UserManager<ApplicationUser> userManager
 
 <div class="user-info">
     <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(Model.ProfileImage)" alt="Image" style="width:150px; height:150px;">
@@ -46,8 +47,22 @@
 
     <div class="user-followers-form">
         <div class="text-center">
-            <h3 style="margin-top:20px;">Followers</h3>
+            <h3 style="margin-top:20px;">Followers</h3><br />
 
+            @{
+                var followers = await followService.GetUserFollowersAsync(Model.Id);
+                foreach (var item in followers)
+                {
+                    var follower = await userManager.FindByIdAsync(item.FollowerId);
+
+                    <a asp-action="Profile" asp-controller="User" asp-route-username="@follower.UserName" style="text-decoration: none">
+                        <div class="user-info" style="display: block">
+                            <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(follower.ProfileImage)" alt="Image">
+                            <h5 class="user-username">@follower.UserName</h5>
+                        </div>
+                    </a><br />
+                }
+            }
 
             <button class="followers-btn">
                 <h3>X</h3>
