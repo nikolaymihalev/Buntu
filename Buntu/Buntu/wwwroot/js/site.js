@@ -165,6 +165,21 @@ $(document).ready(function () {
             },
         });
     });
+
+    $('.followers-btn').click(function () {
+        $.ajax({
+            success: function (response) {
+
+                var followersForm = $('.user-followers-form');
+                if (followersForm.is(":hidden")) {
+                    followersForm.css('display', 'block');
+                }
+                else {
+                    followersForm.css('display', 'none');
+                }
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {

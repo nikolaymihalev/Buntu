@@ -12,7 +12,7 @@
 @{
     int followersCount = await followService.GetUserFollowersCountAsync(Model.Id);
 
-    <button class="followers-btn" data-user-id="@Model.Id">
+    <button class="followers-btn">
         <h5 class="followers-text">@followersCount followers</h5>
     </button>
 
@@ -45,10 +45,13 @@
     }
 
     <div class="user-followers-form">
-        <h3 class="text-center" style="margin-top:20px;">Followers</h3>
+        <div class="text-center">
+            <h3 style="margin-top:20px;">Followers</h3>
 
-        <button class="followers-btn" data-user-id="@Model.Id">
-            <h3>X</h3>
-        </button>
+
+            <button class="followers-btn">
+                <h3>X</h3>
+            </button>
+        </div>
     </div>
 }
