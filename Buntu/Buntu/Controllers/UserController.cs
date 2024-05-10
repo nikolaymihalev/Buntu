@@ -1,8 +1,11 @@
-﻿using Buntu.Core.Models.User;
+﻿using Buntu.Core.Contracts;
+using Buntu.Core.Models.Follow;
+using Buntu.Core.Models.User;
 using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Buntu.Controllers
 {
@@ -10,13 +13,16 @@ namespace Buntu.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IFollowService followService;
 
         public UserController(
             UserManager<ApplicationUser> _userManager,
-            SignInManager<ApplicationUser> _signInManager)
+            SignInManager<ApplicationUser> _signInManager,
+            IFollowService _followService)
         {
             userManager = _userManager;
             signInManager = _signInManager;
+            followService = _followService;
         }
 
         [HttpGet]
@@ -128,6 +134,27 @@ namespace Buntu.Controllers
                 return BadRequest();
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Follow(string userId) 
+        {
+            bool success = true;
+
+            if (await followService.IsProfileFollowedByUserAsync(userId, User.Id()) == true) 
+            {
+                success = false; 
+            }
+
+            try
+            {
+                await followService.AddFollowerAsync(new FollowModel() { UserId = userId, FollowerId = User.Id() });
+            }
+            catch (Exception)
+            {
+            }
+
+            return Json(new { success = success });
         }
     }
 }

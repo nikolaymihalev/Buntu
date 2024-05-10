@@ -29,7 +29,7 @@
             followBtnText = "Follow";
         }
 
-        <button class="follow-btn" data-follower-id="@User.Id()" data-user-id="@Model.Id">@followBtnText</button>
+        <button class="follow-btn" data-user-id="@Model.Id">@followBtnText</button>
     }    
 
     var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);

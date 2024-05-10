@@ -137,12 +137,11 @@ $(document).ready(function () {
 
     $('.follow-btn').click(function () {
         var userId = $(this).data('user-id');
-        var followerId = $(this).data('follower-id');
         var button = $(this);
         $.ajax({
             url: '/User/Follow',
             type: 'POST',
-            data: { userId: userId, followerId: followerId },
+            data: { userId: userId,},
             success: function (response) {
                 if (response.success === true) {
                     button.text("Unfollow");
