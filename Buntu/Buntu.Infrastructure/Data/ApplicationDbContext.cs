@@ -18,6 +18,7 @@ namespace Buntu.Infrastructure.Data
         public DbSet<Like> Likes { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<FavoritePost> FavoritesPosts { get; set; }
+        public DbSet<UserInformation> UsersInormations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

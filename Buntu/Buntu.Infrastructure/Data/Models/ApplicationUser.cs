@@ -25,7 +25,7 @@ namespace Buntu.Infrastructure.Data.Models
         public byte[] ProfileImage { get; set; } = new byte[128];
 
         public ICollection<Follow> Follows { get; set; } = new List<Follow>();
-
         public ICollection<Follow> Followers { get; set; } = new List<Follow>();
+        public ICollection<UserInformation> UserInformations { get; set; } = new List<UserInformation>();
     }
 }

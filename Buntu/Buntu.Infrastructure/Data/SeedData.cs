@@ -13,6 +13,7 @@ namespace Buntu.Infrastructure.Data
             SeedLikes();
             SeedFollows();
             SeedNotifications();
+            SeedInformations();
         }
 
         public ApplicationUser Ivan { get; private set; } = null!;
@@ -26,7 +27,9 @@ namespace Buntu.Infrastructure.Data
         public Follow Followee { get; private set; } = null!;
         public Follow Follower { get; private set; } = null!;
         public Notification Like { get; private set; } = null!;
-        public Notification Comment { get; private set; } = null!;        
+        public Notification Comment { get; private set; } = null!;
+        public UserInformation IvanInformation { get; private set; } = null!;
+        public UserInformation PeturInformation { get; private set; } = null!;
 
         private void SeedUsers() 
         {
@@ -158,6 +161,25 @@ namespace Buntu.Infrastructure.Data
                 Type = "Comment",
                 RelatedId = 1,
                 IsRead = false
+            };
+        }
+
+        private void SeedInformations() 
+        {
+            IvanInformation = new UserInformation()
+            {
+                Id = 1,
+                UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
+                Gender = "Male",
+                BirthDate = Convert.ToDateTime("15/02/1999")
+            };
+
+            PeturInformation = new UserInformation()
+            {
+                Id = 2,
+                UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
+                Gender = "Male",
+                BirthDate = Convert.ToDateTime("15/02/1996")
             };
         }
     }
