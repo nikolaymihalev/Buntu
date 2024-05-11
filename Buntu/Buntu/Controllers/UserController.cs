@@ -1,6 +1,7 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Models.Follow;
 using Buntu.Core.Models.User;
+using Buntu.Core.Models.UserInformation;
 using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,15 +15,18 @@ namespace Buntu.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IFollowService followService;
+        private readonly IUserInformationService userInformationService;
 
         public UserController(
             UserManager<ApplicationUser> _userManager,
             SignInManager<ApplicationUser> _signInManager,
-            IFollowService _followService)
+            IFollowService _followService,
+            IUserInformationService _userInformationService)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             followService = _followService;
+            userInformationService = _userInformationService;
         }
 
         [HttpGet]
@@ -69,6 +73,8 @@ namespace Buntu.Controllers
             }
 
             var result = await userManager.CreateAsync(user, model.Password);
+
+            await userInformationService.AddUserInformationAsync(new UserInformationModel() { UserId = user.Id });
 
             foreach (var item in result.Errors) 
             {
