@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IFollowService, FollowService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IFavoritePostService, FavoritePostService>();
+            services.AddScoped<IUserInformationService, UserInformationService>();
 
             return services;
         }
