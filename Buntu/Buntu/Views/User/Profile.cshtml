@@ -42,7 +42,9 @@
 
     foreach (var post in posts.Posts)
     {
-        <partial name="_PostPartial" model="post" />
+        <div class="text-center">
+            <partial name="_PostPartial" model="post" />
+        </div>
     }
 
     <div class="user-followers-form">
