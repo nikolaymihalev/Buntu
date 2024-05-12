@@ -208,7 +208,7 @@ $(document).ready(function () {
                 postsBut.css('border-bottom', 'none');
                 infoBut.css("border-bottom", "solid");
                 postsContainer.css('display', 'none');
-                infoContainer.css('display', 'block');
+                infoContainer.css('display', 'flex');
             }
         });
     });
