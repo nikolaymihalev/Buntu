@@ -242,3 +242,16 @@ body {
     height: 50px;
     margin-right: 60px;
 }
+
+.info-buttons-container {
+    border-right: groove;
+    width: 200px;
+}
+
+.info-button {
+    border: none;
+    border-radius: 5px;
+    background: none;
+    width: 170px;
+    margin-top: 20px;
+}

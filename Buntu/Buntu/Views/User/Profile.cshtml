@@ -53,9 +53,9 @@
 
         foreach (var post in posts.Posts)
         {
-        <div class="text-center">
-            <partial name="_PostPartial" model="post" />
-        </div>
+            <div class="text-center">
+                <partial name="_PostPartial" model="post" />
+            </div>
         }
 
         <div class="user-followers-form">
@@ -87,7 +87,16 @@
         }
     </div>
     
-    <div class="profile-info-container" style="display: none">
+    <div class="profile-info-container" style="display: none;">
+        @{
+            <div class="info-buttons-container">
+                <h4 style="margin-top:20px;">Information</h4> <br />
 
+                <button class="info-button" style="background: rgb(220, 220, 220); color:white;">General</button>
+                <button class="info-button">Work and Education</button>
+                <button class="info-button">Residence</button>
+                <button class="info-button">Relationships</button>
+            </div>
+        }
     </div>
 }
