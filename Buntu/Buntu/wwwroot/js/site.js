@@ -292,21 +292,38 @@ function showHideProfileInfoBtns(variant) {
         $('#info-btn-residence').css('background', 'none');
         $('#info-btn-relation').css('background', 'none');
 
+        $('.info-container-work').css('display', 'none');
+        $('.info-container-residence').css('display', 'none');
+        $('.info-container-relation').css('display', 'none');
+
     } else if (variant === "Work") {
         $('#info-btn-general').css('background', 'none');
         $('#info-btn-residence').css('background', 'none');
         $('#info-btn-relation').css('background', 'none');
+
+        $('.info-container-general').css('display', 'none');
+        $('.info-container-residence').css('display', 'none');
+        $('.info-container-relation').css('display', 'none');
 
     } else if (variant === "Residence") {
         $('#info-btn-general').css('background', 'none');
         $('#info-btn-work').css('background', 'none');
         $('#info-btn-relation').css('background', 'none');
 
+        $('.info-container-general').css('display', 'none');
+        $('.info-container-work').css('display', 'none');
+        $('.info-container-relation').css('display', 'none');
+
     } else if (variant === "Relation") {
         $('#info-btn-general').css('background', 'none');
         $('#info-btn-work').css('background', 'none');
         $('#info-btn-residence').css('background', 'none');
+
+        $('.info-container-general').css('display', 'none');
+        $('.info-container-work').css('display', 'none');
+        $('.info-container-residence').css('display', 'none');
     }
 
     $('#info-btn-' + variant.toLowerCase()).css('background', 'rgb(220, 220, 220)');
+    $('.info-container-' + variant.toLowerCase()).css('display', 'block');
 }

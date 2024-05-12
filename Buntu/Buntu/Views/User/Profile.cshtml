@@ -44,9 +44,10 @@
         </button>
         <button class="profile-button-info">
             Information
-        </button>        
-    </div>    
+        </button>           
+    </div>
 
+    <br />
     <div class="profile-posts-container" style="display:block">
         @{
             var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);
@@ -86,7 +87,8 @@
         </div>
         }
     </div>
-    
+
+    <br />
     <div class="profile-info-container" style="display: none; align-items: center;">
         @{
             <div class="info-buttons-container">
