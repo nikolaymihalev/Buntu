@@ -221,13 +221,24 @@ body {
 .profile-buttons {
     margin-top: 20px;
 }
-.profile-button {
+.profile-button-posts {
     border: none;
-    border-bottom: solid; 
+    border-bottom: solid;
     background: none;
     cursor: pointer;
     color: black;
     width: 200px;
     height: 50px;
-    margin-right:60px;
+    margin-right: 60px;
+}
+
+.profile-button-info {
+    border: none;
+    border-bottom: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+    width: 200px;
+    height: 50px;
+    margin-right: 60px;
 }

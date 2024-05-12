@@ -180,6 +180,30 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.profile-button-posts').click(function () {
+        var postsBut = $(this);
+        var infoBut = $('.profile-button-info');
+
+        $.ajax({
+            success: function (response) {
+                postsBut.css('border-bottom', 'solid');
+                infoBut.css('border-bottom', 'none');
+            }
+        });
+    });
+
+    $('.profile-button-info').click(function () {
+        var infoBut = $(this);
+        var postsBut = $('.profile-button-posts');
+
+        $.ajax({
+            success: function (response) {
+                postsBut.css('border-bottom', 'none');
+                infoBut.css("border-bottom", "solid");
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {
