@@ -212,6 +212,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.info-button').click(function () {
+        var variant = $(this).data('info-variant');
+
+        $.ajax({
+            success: function (response) {
+                showHideProfileInfoBtns(variant);
+            }
+        });
+    });
 });
 
 function toggleCommentVisibility(textarea) {
@@ -274,4 +284,29 @@ function hideLikesVariantContent(variant) {
         $('.likes-content-wow').css('display', 'none');
         $('.likes-content-sad').css('display', 'none');
     }
+}
+
+function showHideProfileInfoBtns(variant) {
+    if (variant === "General") {
+        $('#info-btn-work').css('background', 'none');
+        $('#info-btn-residence').css('background', 'none');
+        $('#info-btn-relation').css('background', 'none');
+
+    } else if (variant === "Work") {
+        $('#info-btn-general').css('background', 'none');
+        $('#info-btn-residence').css('background', 'none');
+        $('#info-btn-relation').css('background', 'none');
+
+    } else if (variant === "Residence") {
+        $('#info-btn-general').css('background', 'none');
+        $('#info-btn-work').css('background', 'none');
+        $('#info-btn-relation').css('background', 'none');
+
+    } else if (variant === "Relation") {
+        $('#info-btn-general').css('background', 'none');
+        $('#info-btn-work').css('background', 'none');
+        $('#info-btn-residence').css('background', 'none');
+    }
+
+    $('#info-btn-' + variant.toLowerCase()).css('background', 'rgb(220, 220, 220)');
 }
