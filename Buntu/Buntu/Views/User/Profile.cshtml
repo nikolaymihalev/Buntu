@@ -38,6 +38,15 @@
         <button class="follow-btn" data-user-id="@Model.Id" style="background: @folBtnBackCol">@followBtnText</button>
     }    
 
+    <div class="profile-buttons">
+        <button class="profile-button">
+            Posts
+        </button>
+        <button class="profile-button" style="border-bottom: none; ">
+            Information
+        </button>        
+    </div>    
+
     var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);
 
     foreach (var post in posts.Posts)
