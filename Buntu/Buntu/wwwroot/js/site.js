@@ -184,11 +184,15 @@ $(document).ready(function () {
     $('.profile-button-posts').click(function () {
         var postsBut = $(this);
         var infoBut = $('.profile-button-info');
+        var postsContainer = $('.profile-posts-container');
+        var infoContainer = $('.profile-info-container');
 
         $.ajax({
             success: function (response) {
                 postsBut.css('border-bottom', 'solid');
                 infoBut.css('border-bottom', 'none');
+                postsContainer.css('display', 'block');
+                infoContainer.css('display', 'none');
             }
         });
     });
@@ -196,11 +200,15 @@ $(document).ready(function () {
     $('.profile-button-info').click(function () {
         var infoBut = $(this);
         var postsBut = $('.profile-button-posts');
+        var postsContainer = $('.profile-posts-container');
+        var infoContainer = $('.profile-info-container');
 
         $.ajax({
             success: function (response) {
                 postsBut.css('border-bottom', 'none');
                 infoBut.css("border-bottom", "solid");
+                postsContainer.css('display', 'none');
+                infoContainer.css('display', 'block');
             }
         });
     });
