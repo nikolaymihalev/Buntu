@@ -1,6 +1,7 @@
 ﻿@model ApplicationUser
 @inject IFollowService followService
 @inject IPostService postService
+@inject IUserInformationService userInfoService;
 @inject UserManager<ApplicationUser> userManager
 
 <div class="user-info">
@@ -76,21 +77,23 @@
                             </div>
                         </a>
 
-                        <br />
+                            <br />
+                        }
                     }
-                }
 
-                <button class="followers-btn">
-                    <h3>X</h3>
-                </button>
+                    <button class="followers-btn">
+                        <h3>X</h3>
+                    </button>
+                </div>
             </div>
-        </div>
         }
     </div>
 
     <br />
     <div class="profile-info-container" style="display: none; align-items: center;">
         @{
+            var userInformation = await userInfoService.GetUserInformationAsync(Model.Id);
+
             <div class="info-buttons-container">
                 <h4 style="margin-bottom:10px;">Information</h4>
 
@@ -101,16 +104,36 @@
             </div>
 
             <div class="info-container-general" style="display: block">
-                <h5 class="info-title">General</h5>
+                <div class="info-container">
+                    <h3>General Information</h3><br />
+                    <h5>@userInformation.Gender</h5>
+                    <p>Gender</p><br />
+                    <h5>@userInformation.BirthDate.ToString("yyyy-MM-dd")</h5>
+                    <p>Date of birth</p>
+                </div>                
             </div>
             <div class="info-container-work" style="display: none">
-                <h5 class="info-title">Work</h5>
+                <div class="info-container">
+                    <h3>Work and Education</h3><br />
+                    <h5>@userInformation.Work</h5>
+                    <p>Work</p><br />
+                    <h5>@userInformation.University</h5>
+                    <p>College/University</p>
+                    <h5>@userInformation.School</h5>
+                    <p>School</p><br />
+                </div>
             </div>
             <div class="info-container-residence" style="display: none">
-                <h5 class="info-title">Residence</h5>
+                <div class="info-container">
+                    <h3>Residence</h3><br />
+                    <h5>@userInformation.Residence</h5>
+                </div>
             </div>
             <div class="info-container-relation" style="display: none">
-                <h5 class="info-title">Relationships</h5>
+                <div class="info-container">
+                    <h3>Relationships</h3><br />
+                    <h5>@userInformation.Relationships</h5>
+                </div>
             </div>
         }
     </div>
