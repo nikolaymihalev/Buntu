@@ -106,33 +106,96 @@
             <div class="info-container-general" style="display: block">
                 <div class="info-container">
                     <h3>General Information</h3><br />
-                    <h5>@userInformation.Gender</h5>
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.Gender) || userInformation.Gender == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.Gender</h5>
+                        }
+                    }
                     <p>Gender</p><br />
-                    <h5>@userInformation.BirthDate.ToString("yyyy-MM-dd")</h5>
+                    @{
+                        if (userInformation.BirthDate == DateTime.MinValue)
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.BirthDate.ToString("yyyy-MM-dd")</h5>
+                        }
+                    }
                     <p>Date of birth</p>
                 </div>                
             </div>
-            <div class="info-container-work" style="display: none">
+            <div class="info-container-work" style="display: none;">
                 <div class="info-container">
                     <h3>Work and Education</h3><br />
-                    <h5>@userInformation.Work</h5>
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.Work) || userInformation.Work == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.Work</h5>
+                        }
+                    }
                     <p>Work</p><br />
-                    <h5>@userInformation.University</h5>
-                    <p>College/University</p>
-                    <h5>@userInformation.School</h5>
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.University) || userInformation.University == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.University</h5>
+                        }
+                    }
+                    <p>College/University</p><br />
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.School) || userInformation.School == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.School</h5>
+                        }
+                    }
                     <p>School</p><br />
                 </div>
             </div>
             <div class="info-container-residence" style="display: none">
                 <div class="info-container">
                     <h3>Residence</h3><br />
-                    <h5>@userInformation.Residence</h5>
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.Residence) || userInformation.Residence == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.Residence</h5>
+                        }
+                    }
                 </div>
             </div>
             <div class="info-container-relation" style="display: none">
                 <div class="info-container">
                     <h3>Relationships</h3><br />
-                    <h5>@userInformation.Relationships</h5>
+                    @{
+                        if (string.IsNullOrEmpty(userInformation.Relationships) || userInformation.Relationships == "")
+                        {
+                            <h5>No information provided</h5>
+                        }
+                        else
+                        {
+                            <h5>@userInformation.Relationships</h5>
+                        }
+                    }
                 </div>
             </div>
         }
