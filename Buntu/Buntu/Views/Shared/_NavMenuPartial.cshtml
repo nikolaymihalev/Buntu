@@ -12,5 +12,9 @@
         <a class="nav-menu-link" asp-action="Notifications" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" /> Notifications</a><br /><br />
         <a class="nav-menu-link" asp-action="Add" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Create.png" /> Create</a><br /><br />
         <a class="nav-menu-link" asp-action="Profile" asp-controller="User" asp-route-username="@User?.Identity?.Name"><img class="nav-menu-link-img" src="data:image/png;base64,@Convert.ToBase64String(user.ProfileImage)"> Profile</a>
+
+        <div style="margin-top:500px">
+            <a class="nav-menu-link" asp-action="Logout" asp-controller="User">Logout</a>
+        </div>
     </aside>
 }
