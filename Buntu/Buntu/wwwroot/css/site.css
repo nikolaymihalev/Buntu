@@ -268,3 +268,9 @@ body {
     width: 10%;
     border-right: groove;
 }
+
+.nav-menu-link {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}
