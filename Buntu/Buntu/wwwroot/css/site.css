@@ -260,3 +260,10 @@ body {
 .info-container {
     margin: 0px 0px 0px 30px;
 }
+
+.nav-menu-btns {
+    position: fixed;
+    top: 25%;
+    left: 2%;
+    height: 100%;
+}
