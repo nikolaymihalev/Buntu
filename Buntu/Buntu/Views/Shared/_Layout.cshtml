@@ -16,15 +16,10 @@
         if (User?.Identity?.IsAuthenticated == true)
         {
             <aside class="nav-menu-btns">
-                <br />
-                <div>
-                    <h2>Recent posts</h2>
-                    <ul>
-                        <li><a href="#">Our Response</a></li>
-                        <li><a href="#">Her Story</a></li>
-                        <li><a href="#">Greatest Challenges</a></li>
-                    </ul>
-                </div>
+                <a asp-action="Home" asp-controller="Post">Home</a><br />
+                <a href="#">Notifications</a><br />
+                <a asp-action="Add" asp-controller="Post">Create</a><br />
+                <a asp-action="Profile" asp-controller="User" asp-route-username="@User.Identity.Name">Profile</a>
             </aside>
         }
     }
