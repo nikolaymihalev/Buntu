@@ -2,7 +2,7 @@
 @inject ILikeService likeService 
 @inject IFavoritePostService favoritePostService
 @inject ICommentService commentService
-@inject UserManager<ApplicationUser> userManager;
+@inject UserManager<ApplicationUser> userManager
 
 <div class="post-container">
     <a asp-action="Profile" asp-controller="User" asp-route-username="@Model.Username" style="text-decoration: none">

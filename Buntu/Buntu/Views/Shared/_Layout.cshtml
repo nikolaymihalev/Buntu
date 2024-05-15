@@ -15,13 +15,7 @@
     @{
         if (User?.Identity?.IsAuthenticated == true)
         {
-            <aside class="nav-menu-btns">
-                <a class="nav-menu-link" asp-action="Home" asp-controller="Post">Home</a><br />
-                <a class="nav-menu-link" asp-action="Search" asp-controller="User">Search</a><br />
-                <a class="nav-menu-link" asp-action="Notifications" asp-controller="Post">Notifications</a><br />
-                <a class="nav-menu-link" asp-action="Add" asp-controller="Post">Create</a><br />
-                <a class="nav-menu-link" asp-action="Profile" asp-controller="User" asp-route-username="@User.Identity.Name">Profile</a>
-            </aside>
+            <partial name="_NavMenuPartial"/>
         }
     }
 
