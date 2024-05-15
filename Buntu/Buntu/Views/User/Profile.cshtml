@@ -4,6 +4,7 @@
 @inject IUserInformationService userInfoService;
 @inject UserManager<ApplicationUser> userManager
 
+<br />
 <div class="user-info">
     <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(Model.ProfileImage)" alt="Image" style="width:150px; height:150px;">
     <h5 class="user-username" style="font-size:40px">
@@ -53,32 +54,38 @@
         @{
             var posts = await postService.GetPostsForPageAsync(Model.Id, true, 1);
 
-        foreach (var post in posts.Posts)
-        {
-            <div class="text-center">
-                <partial name="_PostPartial" model="post" />
-            </div>
-        }
+            if (posts.Posts.Any())
+            {
+                foreach (var post in posts.Posts)
+                {
+                    <div class="text-center">
+                        <partial name="_PostPartial" model="post" />
+                    </div>
+                }
+            }            
 
-        <div class="user-followers-form">
-            <div class="text-center">
-                <h3 style="margin-top:20px;">Followers</h3><br />
+            <div class="user-followers-form">
+                <div class="text-center">
+                    <h3 style="margin-top:20px;">Followers</h3><br />
 
-                @{
-                    var followers = await followService.GetUserFollowersAsync(Model.Id);
-                    foreach (var item in followers)
-                    {
-                        var follower = await userManager.FindByIdAsync(item.FollowerId);
+                    @{
+                        var followers = await followService.GetUserFollowersAsync(Model.Id);
+                        if (followers.Any())
+                        {
+                            foreach (var item in followers)
+                            {
+                                var follower = await userManager.FindByIdAsync(item.FollowerId);
 
-                        <a asp-action="Profile" asp-controller="User" asp-route-username="@follower.UserName" style="text-decoration: none">
-                            <div class="user-info" style="display: block">
-                                <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(follower.ProfileImage)" alt="Image">
-                                <h5 class="user-username">@follower.UserName</h5>
-                            </div>
-                        </a>
+                                <a asp-action="Profile" asp-controller="User" asp-route-username="@follower.UserName" style="text-decoration: none">
+                                    <div class="user-info" style="display: block">
+                                        <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(follower.ProfileImage)" alt="Image">
+                                        <h5 class="user-username">@follower.UserName</h5>
+                                    </div>
+                                </a>
 
-                            <br />
-                        }
+                                <br />
+                            }
+                        }                        
                     }
 
                     <button class="followers-btn">
@@ -107,7 +114,7 @@
                 <div class="info-container">
                     <h3>General Information</h3><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.Gender) || userInformation.Gender == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.Gender) || userInformation.Gender == "")
                         {
                             <h5>No information provided</h5>
                         }
@@ -115,12 +122,14 @@
                         {
                             <h5>@userInformation.Gender</h5>
                         }
+
                     }
                     <p>Gender</p><br />
                     @{
-                        if (userInformation.BirthDate == DateTime.MinValue)
+                        if (userInformation == null || userInformation.BirthDate == DateTime.MinValue)
                         {
                             <h5>No information provided</h5>
+                            
                         }
                         else
                         {
@@ -134,9 +143,10 @@
                 <div class="info-container">
                     <h3>Work and Education</h3><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.Work) || userInformation.Work == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.Work) || userInformation.Work == "")
                         {
                             <h5>No information provided</h5>
+
                         }
                         else
                         {
@@ -145,9 +155,10 @@
                     }
                     <p>Work</p><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.University) || userInformation.University == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.University) || userInformation.University == "")
                         {
                             <h5>No information provided</h5>
+
                         }
                         else
                         {
@@ -156,7 +167,7 @@
                     }
                     <p>College/University</p><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.School) || userInformation.School == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.School) || userInformation.School == "")
                         {
                             <h5>No information provided</h5>
                         }
@@ -172,7 +183,7 @@
                 <div class="info-container">
                     <h3>Residence</h3><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.Residence) || userInformation.Residence == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.Residence) || userInformation.Residence == "")
                         {
                             <h5>No information provided</h5>
                         }
@@ -187,7 +198,7 @@
                 <div class="info-container">
                     <h3>Relationships</h3><br />
                     @{
-                        if (string.IsNullOrEmpty(userInformation.Relationships) || userInformation.Relationships == "")
+                        if (userInformation == null || string.IsNullOrEmpty(userInformation.Relationships) || userInformation.Relationships == "")
                         {
                             <h5>No information provided</h5>
                         }

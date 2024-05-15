@@ -34,9 +34,10 @@ namespace Buntu.Core.Services
             }
         }
 
-        public async Task<UserInformationModel> GetUserInformationAsync(string userId)
+        public async Task<UserInformationModel?> GetUserInformationAsync(string userId)
         {
             return await repository.AllReadonly<UserInformation>()
+                .Where(x => x.UserId == userId)
                 .Select(x => new UserInformationModel()
                 {
                     Id = x.Id,
@@ -49,7 +50,7 @@ namespace Buntu.Core.Services
                     Residence = x.Residence,
                     Relationships = x.Relationships
                 })
-                .FirstAsync(x=> x.UserId == userId);
+                .FirstOrDefaultAsync();
         }
     }
 }
