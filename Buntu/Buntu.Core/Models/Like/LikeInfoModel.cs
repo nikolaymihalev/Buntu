@@ -1,4 +1,4 @@
-﻿using Buntu.Core.Enums;
+﻿using Buntu.Core.Models.Post;
 
 namespace Buntu.Core.Models.Like
 {
@@ -37,6 +37,11 @@ namespace Buntu.Core.Models.Like
         /// <summary>
         /// Like variant
         /// </summary>
-        public string Variant { get; set; } 
+        public string Variant { get; set; }
+
+        /// <summary>
+        /// Model for post information
+        /// </summary>
+        public PostInfoModel Post { get; set; }
     }
 }
