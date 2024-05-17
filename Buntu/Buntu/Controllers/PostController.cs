@@ -159,5 +159,13 @@ namespace Buntu.Controllers
 
             return Json(new { success = success });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Favorites() 
+        {
+            var model = await favoritePostService.GetUserFavoritePostsAsync(User.Id());
+
+            return View(model);
+        }
     }
 }
