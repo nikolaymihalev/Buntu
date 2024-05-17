@@ -167,5 +167,13 @@ namespace Buntu.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Liked()
+        {
+            var model = await likeService.GetUserLikedPostsAsync(User.Id());
+
+            return View(model);
+        }
     }
 }
