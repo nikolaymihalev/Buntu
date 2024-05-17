@@ -1,0 +1,18 @@
+﻿@model IEnumerable<FavoritePostModel>
+
+@{
+    if (Model.Any())
+    {
+        <div class="text-center col">
+            @foreach (var p in Model)
+            {
+                <partial name="_PostPartial" model="p.Post" />
+                <br />
+            }
+        </div>
+    }
+    else
+    {
+        <h4 class="text-center">No result!</h4>
+    }
+}
