@@ -1,9 +1,12 @@
 ﻿using Buntu.Core.Contracts;
 using Buntu.Core.Enums;
+using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.Like;
+using Buntu.Core.Models.Post;
 using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Constants;
 using Buntu.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buntu.Core.Services
@@ -11,10 +14,17 @@ namespace Buntu.Core.Services
     public class LikeService : ILikeService
     {
         private readonly IRepository repository;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly ICommentService commentService;
 
-        public LikeService(IRepository _repository)
+        public LikeService(
+            IRepository _repository, 
+            UserManager<ApplicationUser> _userManager,
+            ICommentService _commentService)
         {
             repository = _repository;
+            userManager = _userManager;
+            commentService = _commentService;
         }
 
         public async Task AddLikeAsync(LikeAddModel model)
@@ -146,6 +156,54 @@ namespace Buntu.Core.Services
             return await repository.AllReadonly<Like>()
                 .Where(x => x.PostId == postId && x.Variant == variant)
                 .CountAsync();
+        }
+
+        public async Task<IEnumerable<LikeInfoModel>> GetUserLikedPostsAsync(string userId) 
+        {
+            var list = await repository.AllReadonly<Like>()
+                .Where(x => x.UserId == userId)
+                .Select(x => new LikeInfoModel(
+                    x.Id, 
+                    x.PostId, 
+                    x.UserId, 
+                    x.Variant)
+                {
+                    Post = new PostInfoModel(
+                        x.PostId,
+                        x.Post.Content,
+                        x.Post.UserId,
+                        "",
+                        x.Post.CreatedDate,
+                        Convert.ToBase64String(x.Post.Image),
+                        x.Post.Status,
+                        "",
+                        0,
+                        "",
+                    "")
+                }).ToListAsync();
+
+            foreach (var item in list)
+            {
+                var user = await userManager.FindByIdAsync(item.Post.UserId);
+                CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(item.PostId);
+
+                if (user != null)
+                {
+                    item.Post.UserProfileImage = Convert.ToBase64String(user.ProfileImage);
+                    item.Post.Username = user.UserName;
+                }
+
+                if (lastComment != null)
+                {
+                    item.Post.LastCommentUsername = lastComment.Username;
+                    item.Post.LastCommentContent = lastComment.Content;
+                }
+
+
+                item.Post.LikesCount = await GetLikesCountForPostAsync(item.PostId);
+            }
+
+            return list;
         }
     }
 }
