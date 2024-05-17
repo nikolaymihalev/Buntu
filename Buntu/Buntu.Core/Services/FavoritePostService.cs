@@ -86,8 +86,8 @@ namespace Buntu.Core.Services
 
             foreach (var item in list) 
             {
-                var user = await userManager.FindByIdAsync(item.UserId);
-                CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(item.Id);
+                var user = await userManager.FindByIdAsync(item.Post.UserId);
+                CommentInfoModel? lastComment = await commentService.GetLastCommentForPostAsync(item.PostId);
 
                 if (user != null)
                 {
