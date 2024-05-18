@@ -2,6 +2,7 @@
 using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
+using Buntu.Core.Models.Post;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -172,6 +173,14 @@ namespace Buntu.Controllers
         public async Task<IActionResult> Liked()
         {
             var model = await likeService.GetUserLikedPostsAsync(User.Id());
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add() 
+        {
+            var model = new PostFormModel();
 
             return View(model);
         }
