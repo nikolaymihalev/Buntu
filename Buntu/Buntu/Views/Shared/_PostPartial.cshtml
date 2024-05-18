@@ -9,6 +9,12 @@
         <div class="user-info">
             <img class="user-profile-img" src="data:image/png;base64,@Model.UserProfileImage" alt="Image">
             <h5 class="user-username">@Model.Username</h5>
+            @{
+                if (Model.Status != null && string.IsNullOrEmpty(Model.Status) == false && Model.Status != "")
+                {
+                    <h5 class="user-username" style="font-size:17px; font-weight: normal;"> feels @Model.Status</h5>
+                }
+            }
         </div>
     </a>
     <div class="post-details">
