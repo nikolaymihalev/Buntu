@@ -2,13 +2,12 @@
 
 <input type="hidden" asp-for="@Model.Id" />
 <div class="form-group">
-    <label asp-for="Content"></label>
-    <input asp-for="Content" class="form-control" placeholder="Burger...">
+    <input asp-for="Content" class="form-control" placeholder="I just bought a new car...">
     <span asp-validation-for="Content" class="small text-danger"></span>
 </div>
 <br />
 <div class="form-group">
-    <label asp-for="Status"></label>
+    <label asp-for="Status">How do you feel?</label>
     <select asp-for="Status" class="form-control">
         @foreach (var category in Model.Statuses)
         {

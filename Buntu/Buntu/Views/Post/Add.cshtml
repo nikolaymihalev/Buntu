@@ -4,6 +4,9 @@
     ViewBag.OperationValue = "Publish";
 }
 
+<br />
+<h3 class="text-start">Tell the world what's new with you</h3><hr />
+
 <form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
     <partial name="_PostFormPartial" model="@Model" />
 </form>
