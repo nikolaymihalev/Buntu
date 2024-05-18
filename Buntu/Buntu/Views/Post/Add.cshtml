@@ -1,8 +1,12 @@
 ﻿@model PostFormModel
 @{
     ViewBag.Title = "Add Post";
-    ViewBag.OperationValue = "Add";
+    ViewBag.OperationValue = "Publish";
 }
+
+<form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
+    <partial name="_PostFormPartial" model="@Model" />
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
