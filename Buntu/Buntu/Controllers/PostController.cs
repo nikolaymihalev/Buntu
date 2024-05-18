@@ -1,4 +1,5 @@
 ﻿using Buntu.Core.Contracts;
+using Buntu.Core.Enums;
 using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
@@ -180,7 +181,10 @@ namespace Buntu.Controllers
         [HttpGet]
         public async Task<IActionResult> Add() 
         {
-            var model = new PostFormModel();
+            var model = new PostFormModel()
+            {
+                Statuses = postService.GetStatusesAsync<PostStatus>()
+            };
 
             return View(model);
         }

@@ -11,5 +11,6 @@ namespace Buntu.Core.Contracts
         Task EditPostAsync(PostFormModel model);
         Task DeletePostAsync(int id);
         Task<PostInfoModel?> GetPostByIdAsync(int id);
+        List<int> GetStatusesAsync<T>() where T : Enum;
     }
 }

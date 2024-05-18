@@ -218,5 +218,10 @@ namespace Buntu.Core.Services
 
             return model;
         }
+
+        public List<int> GetStatusesAsync<T>() where T : Enum
+        {
+            return Enum.GetValues(typeof(T)).Cast<int>().ToList();
+        }
     }
 }

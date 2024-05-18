@@ -52,6 +52,6 @@ namespace Buntu.Core.Models.Post
         /// <summary>
         /// Collection of post statuses
         /// </summary>
-        public IList<PostStatus> Statuses { get; set; } = new List<PostStatus>();
+        public IList<int> Statuses { get; set; } = new List<int>();
     }
 }
