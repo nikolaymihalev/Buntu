@@ -179,13 +179,51 @@ namespace Buntu.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add() 
+        public IActionResult Add() 
         {
             var model = new PostFormModel()
             {
                 Statuses = postService.GetStatusesAsync<PostStatus>()
             };
 
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(PostFormModel model) 
+        {
+            model.UserId = User.Id();
+
+            if (!ModelState.IsValid) 
+            {
+                model.Statuses = postService.GetStatusesAsync<PostStatus>();
+
+                return View(model);
+            }
+
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    model.ImageFile.CopyTo(memoryStream);
+                    byte[] imageBytes = memoryStream.ToArray();
+
+                    model.Image = imageBytes;
+
+                    try
+                    {
+                        await postService.AddPostAsync(model);
+                    }
+                    catch (Exception)
+                    {
+                        model.Statuses = postService.GetStatusesAsync<PostStatus>();
+                        return View(model);
+                    }
+                }
+                return RedirectToAction(nameof(Home));
+            }
+
+            model.Statuses = postService.GetStatusesAsync<PostStatus>();
             return View(model);
         }
     }
