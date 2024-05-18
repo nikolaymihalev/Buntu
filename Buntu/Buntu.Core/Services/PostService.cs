@@ -37,7 +37,7 @@ namespace Buntu.Core.Services
                 UserId = model.UserId,
                 CreatedDate = DateTime.Now,
                 Image = model.Image,
-                Status = model.Statuses[model.Status].ToString()
+                Status = model.Status
             };
 
             try
@@ -74,7 +74,7 @@ namespace Buntu.Core.Services
 
             post.Content = model.Content;
             post.Image = model.Image;
-            post.Status = model.Statuses[model.Status].ToString();
+            post.Status = model.Status;
 
             await repository.SaveChangesAsync();
         }
@@ -219,9 +219,9 @@ namespace Buntu.Core.Services
             return model;
         }
 
-        public List<int> GetStatusesAsync<T>() where T : Enum
+        public List<string> GetStatusesAsync<T>() where T : Enum
         {
-            return Enum.GetValues(typeof(T)).Cast<int>().ToList();
+            return new List<string>(Enum.GetNames(typeof(T)));
         }
     }
 }

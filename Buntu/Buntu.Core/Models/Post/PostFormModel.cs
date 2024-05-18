@@ -47,11 +47,11 @@ namespace Buntu.Core.Models.Post
         /// <summary>
         /// Status number
         /// </summary>
-        public int Status { get; set; } 
+        public string Status { get; set; } 
 
         /// <summary>
         /// Collection of post statuses
         /// </summary>
-        public IList<int> Statuses { get; set; } = new List<int>();
+        public IList<string> Statuses { get; set; } = new List<string>();
     }
 }
