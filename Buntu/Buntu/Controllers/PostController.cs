@@ -15,17 +15,20 @@ namespace Buntu.Controllers
         private readonly ILikeService likeService;
         private readonly ICommentService commentService;
         private readonly IFavoritePostService favoritePostService;
+        private readonly INotificationService notificationService;
 
         public PostController(
             IPostService _postService, 
             ILikeService _likeService,
             ICommentService _commentService,
-            IFavoritePostService _favoritePostService)
+            IFavoritePostService _favoritePostService,
+            INotificationService _notificationService)
         {
             postService = _postService;
             likeService = _likeService;
             commentService = _commentService;
             favoritePostService = _favoritePostService;
+            notificationService = _notificationService;
         }
 
         [HttpGet]
@@ -224,6 +227,14 @@ namespace Buntu.Controllers
             }
 
             model.Statuses = postService.GetStatusesAsync<PostStatus>();
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Notifications() 
+        {
+            var model = await notificationService.GetUserNotificationsAsync(User.Id());
+
             return View(model);
         }
     }
