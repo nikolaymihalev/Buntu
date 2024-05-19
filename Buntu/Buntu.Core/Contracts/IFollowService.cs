@@ -10,5 +10,6 @@ namespace Buntu.Core.Contracts
         Task<int> GetUserFollowersCountAsync(string userId);
         Task<bool> IsProfileFollowedByUserAsync(string userId, string followerId);
         Task<FollowModel?> GetFollowAsync(string userId, string followerId);
+        Task<FollowModel?> GetFollowByIdAsync(int id);
     }
 }

@@ -61,7 +61,7 @@ namespace Buntu.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<LikeInfoModel?> GetLikeByIdAsync(int postId, string userId)
+        public async Task<LikeInfoModel?> GetLikeByPostAndUserIdAsync(int postId, string userId)
         {
             var like = await repository.AllReadonly<Like>()
                 .FirstOrDefaultAsync<Like>(x => x.PostId == postId && x.UserId == userId);
@@ -204,6 +204,16 @@ namespace Buntu.Core.Services
             }
 
             return list;
+        }
+
+        public async Task<LikeInfoModel?> GetLikeByIdAsync(int id)
+        {
+            var entity = await repository.GetByIdAsync<Like>(id);
+
+            if(entity != null)
+                return new LikeInfoModel(entity.Id,entity.PostId,entity.UserId,entity.Variant);
+
+            return null;
         }
     }
 }

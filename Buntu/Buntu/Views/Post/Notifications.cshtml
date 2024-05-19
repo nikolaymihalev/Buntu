@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NotificationModel>
+@inject UserManager<ApplicationUser> userManager
+@inject IPostService postService
+@inject ILikeService likeService
+@inject ICommentService commentService
+@inject IFollowService followService
+
+<br />
+@{
+    if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            var user = await userManager.FindByIdAsync(item.UserId);
+
+            if (item.Type == "Like")
+            {
+                var like = await likeService.GetLikeByIdAsync(item.RelatedId);
+            }
+            else if (item.Type == "Comment")
+            {
+                var comment = await commentService.GetCommentByIdAsync(item.RelatedId);
+            }
+            else if (item.Type == "Post")
+            {
+                var post = await postService.GetPostByIdAsync(item.RelatedId);
+            }
+            else if (item.Type == "Follow")
+            {
+                var follow = await followService.GetFollowByIdAsync(item.RelatedId);
+            }
+        }
+    }
+    else
+    {
+        <h5 class="text-start">No new notifications!</h5>
+    }
+}

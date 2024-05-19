@@ -7,7 +7,8 @@ namespace Buntu.Core.Contracts
         Task AddLikeAsync(LikeAddModel model);
         Task EditLikeAsync(LikeAddModel model);
         Task RemoveLikeAsync(int postId, string userId);
-        Task<LikeInfoModel?> GetLikeByIdAsync(int postId, string userId);
+        Task<LikeInfoModel?> GetLikeByPostAndUserIdAsync(int postId, string userId);
+        Task<LikeInfoModel?> GetLikeByIdAsync(int id);
         Task<IEnumerable<LikeInfoModel>> GetLikesForPostAsync(int postId);
         Task<IEnumerable<LikeInfoModel>> GetLikesPerVariantForPostAsync(int postId, string variant);
         Task<int> GetLikesCountForPostAsync(int postId);
