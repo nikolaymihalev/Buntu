@@ -11,7 +11,7 @@
     {
         foreach (var item in Model)
         {
-            var user = await userManager.FindByIdAsync(item.UserId);
+            var user = await userManager.FindByIdAsync(item.OtherUserId);
             var userProfileImage = Convert.ToBase64String(user.ProfileImage);
 
             if (item.Type == "Like")

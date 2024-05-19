@@ -149,6 +149,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 1,
                 UserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
+                OtherUserId= "68106d58-f54a-409c-92da-9184a75d55f7",
                 Type = "Like",
                 RelatedId = 1,
                 IsRead = false
@@ -158,6 +159,7 @@ namespace Buntu.Infrastructure.Data
             {
                 Id = 2,
                 UserId = "68106d58-f54a-409c-92da-9184a75d55f7",
+                OtherUserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 Type = "Comment",
                 RelatedId = 1,
                 IsRead = false

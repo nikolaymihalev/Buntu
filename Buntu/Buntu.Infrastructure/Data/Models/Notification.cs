@@ -16,6 +16,10 @@ namespace Buntu.Infrastructure.Data.Models
         public string UserId { get; set; } = string.Empty;
 
         [Required]
+        [Comment("Other user identifier")]
+        public string OtherUserId { get; set; } = string.Empty;
+
+        [Required]
         [Comment("Notification type")]
         public string Type { get; set; } = string.Empty;
 

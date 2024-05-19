@@ -16,6 +16,11 @@
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>
+        /// Other user identifier
+        /// </summary>
+        public string OtherUserId { get; set; } = string.Empty;
+
+        /// <summary>
         /// Tyte of notification
         /// </summary>
         public string Type { get; set; } = string.Empty;

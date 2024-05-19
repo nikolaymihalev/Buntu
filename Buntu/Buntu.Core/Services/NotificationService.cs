@@ -21,6 +21,7 @@ namespace Buntu.Core.Services
             var entity = new Notification()
             {
                 UserId = model.UserId,
+                OtherUserId = model.OtherUserId,
                 Type = model.Type,
                 RelatedId = model.RelatedId,
                 IsRead = false
@@ -59,6 +60,7 @@ namespace Buntu.Core.Services
                 {
                     Id = x.Id,
                     UserId = x.UserId,
+                    OtherUserId = x.OtherUserId,
                     Type = x.Type,
                     RelatedId = x.RelatedId,
                     IsRead = x.IsRead
