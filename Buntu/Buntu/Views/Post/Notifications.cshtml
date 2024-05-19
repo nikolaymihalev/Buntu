@@ -29,7 +29,7 @@
                                     string likeImage = like.Variant+".png";
                                 }
                                 <h5 class="user-username"> liked your post with
-                                    <img src="~/images/likes/@likeImage" style="width: 20px; height:20px;" />
+                                    <img src="~/images/likes/@likeImage" style="width: 20px; height:20px;" /> 
                                 </h5>
                             </div>
                         </a>
@@ -39,6 +39,19 @@
             else if (item.Type == "Comment")
             {
                 var comment = await commentService.GetCommentByIdAsync(item.RelatedId);
+
+                if (comment != null)
+                {
+                    <div class="comments-content">
+                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
+                            <div class="user-info">
+                                <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
+                                <h5 class="user-username">@user.UserName</h5>
+                                <h5 class="user-username"> commented your post!</h5>
+                            </div>
+                        </a>
+                    </div>
+                }
             }
             else if (item.Type == "Post")
             {
