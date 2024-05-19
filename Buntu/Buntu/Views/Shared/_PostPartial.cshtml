@@ -32,7 +32,7 @@
                     }
                     else
                     {
-                        var like = await likeService.GetLikeByIdAsync(Model.Id, User.Id());
+                        var like = await likeService.GetLikeByPostAndUserIdAsync(Model.Id, User.Id());
                         imageValue = "likes/"+like.Variant+".png";
                        
                     }

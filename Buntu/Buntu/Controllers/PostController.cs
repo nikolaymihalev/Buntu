@@ -55,7 +55,7 @@ namespace Buntu.Controllers
                 case "Angry": value = 6; break;
             }
 
-            var like = await likeService.GetLikeByIdAsync(postId, User.Id());
+            var like = await likeService.GetLikeByPostAndUserIdAsync(postId, User.Id());
             if (like != null)
             {
                 var entity = new LikeAddModel()
@@ -96,7 +96,7 @@ namespace Buntu.Controllers
             string operation = "";
             try
             {
-                var like = await likeService.GetLikeByIdAsync(postId, User.Id());
+                var like = await likeService.GetLikeByPostAndUserIdAsync(postId, User.Id());
                 if (like != null)
                 {
                     await likeService.RemoveLikeAsync(postId, User.Id());
