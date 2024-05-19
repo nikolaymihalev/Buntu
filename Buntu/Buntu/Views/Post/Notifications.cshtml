@@ -56,10 +56,36 @@
             else if (item.Type == "Post")
             {
                 var post = await postService.GetPostByIdAsync(item.RelatedId);
+
+                if (post != null)
+                {
+                    <div class="comments-content">
+                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
+                            <div class="user-info">
+                                <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
+                                <h5 class="user-username">@user.UserName</h5>
+                                <h5 class="user-username"> added a new post!</h5>
+                            </div>
+                        </a>
+                    </div>
+                }
             }
             else if (item.Type == "Follow")
             {
                 var follow = await followService.GetFollowByIdAsync(item.RelatedId);
+
+                if (follow != null)
+                {
+                    <div class="comments-content">
+                        <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" style="text-decoration: none">
+                            <div class="user-info">
+                                <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
+                                <h5 class="user-username">@user.UserName</h5>
+                                <h5 class="user-username"> followed you!</h5>
+                            </div>
+                        </a>
+                    </div>
+                }
             }
         }
     }
