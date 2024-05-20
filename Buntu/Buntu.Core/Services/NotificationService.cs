@@ -24,7 +24,8 @@ namespace Buntu.Core.Services
                 OtherUserId = model.OtherUserId,
                 Type = model.Type,
                 RelatedId = model.RelatedId,
-                IsRead = false
+                IsRead = false,
+                CreationDate = DateTime.Now,
             };
 
             try
@@ -63,8 +64,11 @@ namespace Buntu.Core.Services
                     OtherUserId = x.OtherUserId,
                     Type = x.Type,
                     RelatedId = x.RelatedId,
-                    IsRead = x.IsRead
+                    IsRead = x.IsRead,
+                    CreationDate = x.CreationDate
                 })
+                .OrderByDescending(x=>x.CreationDate)
+                .ThenBy(x=>x.IsRead)
                 .ToListAsync();
         }
 

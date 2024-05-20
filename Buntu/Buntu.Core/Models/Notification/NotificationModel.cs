@@ -34,5 +34,10 @@
         /// Is notification read from user
         /// </summary>
         public bool IsRead { get; set; }
+
+        /// <summary>
+        /// Notification creation date
+        /// </summary>
+        public DateTime CreationDate { get; set; }
     }
 }
