@@ -29,6 +29,10 @@ namespace Buntu.Infrastructure.Data.Models
         [Comment("Is notification read")]
         public bool IsRead { get; set; }
 
+        [Required]
+        [Comment("Notification creation date")]
+        public DateTime CreationDate { get; set; }
+
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
     }

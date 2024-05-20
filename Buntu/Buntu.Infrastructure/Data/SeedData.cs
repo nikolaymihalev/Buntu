@@ -152,7 +152,8 @@ namespace Buntu.Infrastructure.Data
                 OtherUserId= "68106d58-f54a-409c-92da-9184a75d55f7",
                 Type = "Like",
                 RelatedId = 1,
-                IsRead = false
+                IsRead = false,
+                CreationDate = Convert.ToDateTime("11/04/2024")
             };
 
             Comment = new Notification()
@@ -162,7 +163,8 @@ namespace Buntu.Infrastructure.Data
                 OtherUserId = "bbd4b588-917f-4634-8142-08f54ee760a1",
                 Type = "Comment",
                 RelatedId = 1,
-                IsRead = false
+                IsRead = false,
+                CreationDate = Convert.ToDateTime("13/06/2024")
             };
         }
 
