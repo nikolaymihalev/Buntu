@@ -237,5 +237,27 @@ namespace Buntu.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int postId, int notId) 
+        {
+            var post = await postService.GetPostByIdAsync(postId);
+
+            if (post != null) 
+            {
+                try
+                {
+                    await notificationService.MarkNotificationAsReadAsync(notId);
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction(nameof(Notifications));
+                }
+
+                return View(post);
+            }
+
+            return RedirectToAction(nameof(Notifications));
+        }
     }
 }
