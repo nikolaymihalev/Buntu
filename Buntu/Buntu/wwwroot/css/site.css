@@ -279,3 +279,10 @@ body {
     width: 25px;
     height: 25px;
 }
+
+.not-content {
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 60%;
+    margin: 40px 0 10px 20%;
+}
