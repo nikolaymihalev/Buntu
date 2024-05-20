@@ -1,7 +1,9 @@
 ﻿@inject UserManager<ApplicationUser> userManager
+@inject INotificationService notificationService
 
 @{
     var user = await userManager.FindByIdAsync(User.Id());
+    int notCount = await notificationService.GetUnreadNotificationsCountAsync(User.Id());
 
     <aside class="nav-menu-btns">
         <br />
@@ -9,7 +11,16 @@
 
         <a class="nav-menu-link" asp-action="Home" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Home.png" /> Home</a><br /><br />
         <a class="nav-menu-link" asp-action="Search" asp-controller="User"><img class="nav-menu-link-img" src="~/images/menubuttons/Search.png" /> Search</a><br /><br />
-        <a class="nav-menu-link" asp-action="Notifications" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" /> Notifications</a><br /><br />
+        <a class="nav-menu-link" asp-action="Notifications" asp-controller="Post">
+            <img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" /> 
+            Notifications
+            @{
+                if (notCount > 0)
+                {
+                    <img class="nav-menu-link-img" style="width:13px; height: 13px" src="~/images/menubuttons/Circle.png" />
+                }
+            }
+        </a><br /><br />
         <a class="nav-menu-link" asp-action="Liked" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Heart.png" /> Liked</a><br /><br />
         <a class="nav-menu-link" asp-action="Favorites" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Favorite.png" /> Favorites</a><br /><br />
         <a class="nav-menu-link" asp-action="Add" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Create.png" /> Create</a><br /><br />

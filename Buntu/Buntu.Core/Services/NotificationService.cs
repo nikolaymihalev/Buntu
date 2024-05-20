@@ -85,5 +85,12 @@ namespace Buntu.Core.Services
 
             await repository.SaveChangesAsync();
         }
+
+        public async Task<int> GetUnreadNotificationsCountAsync(string userId) 
+        {
+            return await repository.AllReadonly<Notification>()
+                .Where(x => x.UserId == userId && x.IsRead == false)
+                .CountAsync();
+        }
     }
 }
