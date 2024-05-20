@@ -3,6 +3,7 @@ using Buntu.Core.Enums;
 using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
+using Buntu.Core.Models.Notification;
 using Buntu.Core.Models.Post;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -56,6 +57,14 @@ namespace Buntu.Controllers
             }
 
             var like = await likeService.GetLikeByPostAndUserIdAsync(postId, User.Id());
+            var post = await postService.GetPostByIdAsync(postId);
+            var notification = new NotificationModel()
+            {
+                UserId = post.UserId,
+                OtherUserId = User.Id(),
+                Type = "Like",
+            };
+
             if (like != null)
             {
                 var entity = new LikeAddModel()
@@ -65,7 +74,9 @@ namespace Buntu.Controllers
                     UserId = User.Id(),
                     Variant = value
                 };
+
                 await likeService.EditLikeAsync(entity);
+                notification.RelatedId = like.Id;
                 operation = "edit";
             }
             else 
@@ -79,12 +90,24 @@ namespace Buntu.Controllers
                         Variant = value
                     };
                     await likeService.AddLikeAsync(entity);
+                    notification.RelatedId = entity.Id;
                     operation = "add";
                 }
                 catch (Exception)
                 {
                 }
 
+            }
+
+            if (post.UserId != User.Id()) 
+            {
+                try
+                {
+                    await notificationService.AddNotificationAsync(notification);
+                }
+                catch (Exception)
+                {
+                }
             }
 
             return Json(new { success = true , operation = operation });

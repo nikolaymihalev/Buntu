@@ -67,8 +67,8 @@ namespace Buntu.Core.Services
                     IsRead = x.IsRead,
                     CreationDate = x.CreationDate
                 })
-                .OrderByDescending(x=>x.CreationDate)
-                .ThenBy(x=>x.IsRead)
+                .OrderBy(x => x.IsRead)
+                .ThenByDescending(x => x.CreationDate)
                 .ToListAsync();
         }
 

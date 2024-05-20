@@ -17,11 +17,11 @@
 
             if (item.IsRead)
             {
-                backgroundColor = "Gainsboro";
+                backgroundColor = "WhiteSmoke";
             }
             else
             {
-                backgroundColor = "white";
+                backgroundColor = "White";
             }
 
             if (item.Type == "Like")
@@ -36,15 +36,16 @@
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
                                 <h5 class="user-username">@user.UserName</h5>
                                 @{
-                                    string likeImage = like.Variant+".png";
+                                    string likeImage = like.Variant + ".png";
                                 }
-                                <h5 class="user-username"> liked your post with
-                                    <img src="~/images/likes/@likeImage" style="width: 20px; height:20px;" /> 
+                                <h5 class="user-username">
+                                    liked your post with
+                                    <img src="~/images/likes/@likeImage" style="width: 20px; height:20px;" />
                                 </h5>
                             </div>
                         </a>
                     </div>
-                }                
+                }
             }
             else if (item.Type == "Comment")
             {
@@ -52,7 +53,7 @@
 
                 if (comment != null)
                 {
-                    <div class="comments-content" style="background:@backgroundColor">
+                    <div class="not-content" style="background:@backgroundColor">
                         <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
@@ -69,7 +70,7 @@
 
                 if (post != null)
                 {
-                    <div class="comments-content" style="background:@backgroundColor">
+                    <div class="not-content" style="background:@backgroundColor">
                         <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
@@ -86,7 +87,7 @@
 
                 if (follow != null)
                 {
-                    <div class="comments-content" style="background:@backgroundColor">
+                    <div class="not-content" style="background:@backgroundColor">
                         <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
