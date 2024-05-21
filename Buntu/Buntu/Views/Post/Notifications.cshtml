@@ -71,7 +71,7 @@
                 if (post != null)
                 {
                     <div class="not-content" style="background:@backgroundColor">
-                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
+                        <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
                                 <h5 class="user-username">@user.UserName</h5>
@@ -88,7 +88,7 @@
                 if (follow != null)
                 {
                     <div class="not-content" style="background:@backgroundColor">
-                        <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" style="text-decoration: none">
+                        <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
                                 <h5 class="user-username">@user.UserName</h5>
