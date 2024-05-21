@@ -31,7 +31,7 @@
                 if (like != null)
                 {
                     <div class="not-content" style="background:@backgroundColor">
-                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
+                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@like.PostId" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
                                 <h5 class="user-username">@user.UserName</h5>
@@ -60,12 +60,12 @@
             }
             else if (item.Type == "Comment")
             {
-                var comment = await commentService.GetCommentByIdAsync(item.RelatedId);
+                var post = await postService.GetPostByIdAsync(item.RelatedId);
 
-                if (comment != null)
+                if (post != null)
                 {
                     <div class="not-content" style="background:@backgroundColor">
-                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@item.RelatedId" asp-route-notId="@item.Id" style="text-decoration: none">
+                        <a asp-action="Details" asp-controller="Post" asp-route-postId="@post.Id" asp-route-notId="@item.Id" style="text-decoration: none">
                             <div class="user-info">
                                 <img class="user-profile-img" src="data:image/png;base64,@userProfileImage" alt="Image">
                                 <h5 class="user-username">@user.UserName</h5>

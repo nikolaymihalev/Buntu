@@ -184,8 +184,8 @@ namespace Buntu.Core.Services
                 post.Status,
                 Convert.ToBase64String(user.ProfileImage),
                 likesCount,
-                lastComment.Username,
-                lastComment.Content);
+                lastComment?.Username ?? "",
+                lastComment?.Content ?? "");
         }
 
         public async Task<PostPageModel> GetPostsForPageAsync(string userId, bool? isProfilePage = null, int currentPage = 1)

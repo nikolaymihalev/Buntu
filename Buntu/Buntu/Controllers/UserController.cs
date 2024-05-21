@@ -195,5 +195,27 @@ namespace Buntu.Controllers
 
             return Json(new { success = success });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Notifications()
+        {
+            var model = await notificationService.GetUserNotificationsAsync(User.Id());
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteNotification(int notId) 
+        {
+            try
+            {
+                await notificationService.DeleteNotificationAsync(notId);
+            }
+            catch (Exception)
+            {
+            }
+
+            return RedirectToAction(nameof(Notifications));
+        }
     }
 }

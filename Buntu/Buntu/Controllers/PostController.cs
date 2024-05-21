@@ -159,7 +159,7 @@ namespace Buntu.Controllers
                     UserId = post.UserId,
                     OtherUserId = User.Id(),
                     Type = "Comment",
-                    RelatedId = comment.Id
+                    RelatedId = postId
                 };
 
                 if (post.UserId != User.Id())
@@ -287,14 +287,6 @@ namespace Buntu.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Notifications() 
-        {
-            var model = await notificationService.GetUserNotificationsAsync(User.Id());
-
-            return View(model);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Details(int postId, int notId) 
         {
             var post = await postService.GetPostByIdAsync(postId);
@@ -307,13 +299,13 @@ namespace Buntu.Controllers
                 }
                 catch (Exception)
                 {
-                    return RedirectToAction(nameof(Notifications));
+                    return RedirectToAction("Notifications","User");
                 }
 
                 return View(post);
             }
 
-            return RedirectToAction(nameof(Notifications));
+            return RedirectToAction("Notifications", "User");
         }
     }
 }
