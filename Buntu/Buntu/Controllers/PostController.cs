@@ -5,6 +5,7 @@ using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
 using Buntu.Core.Models.Notification;
 using Buntu.Core.Models.Post;
+using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -17,19 +18,22 @@ namespace Buntu.Controllers
         private readonly ICommentService commentService;
         private readonly IFavoritePostService favoritePostService;
         private readonly INotificationService notificationService;
+        private readonly IFollowService followService;
 
         public PostController(
             IPostService _postService, 
             ILikeService _likeService,
             ICommentService _commentService,
             IFavoritePostService _favoritePostService,
-            INotificationService _notificationService)
+            INotificationService _notificationService,
+            IFollowService _followService)
         {
             postService = _postService;
             likeService = _likeService;
             commentService = _commentService;
             favoritePostService = _favoritePostService;
             notificationService = _notificationService;
+            followService = _followService;
         }
 
         [HttpGet]
@@ -160,13 +164,7 @@ namespace Buntu.Controllers
 
                 if (post.UserId != User.Id())
                 {
-                    try
-                    {
-                        await notificationService.AddNotificationAsync(notification);
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    await notificationService.AddNotificationAsync(notification);                    
                 }
 
                 success = true;
@@ -260,6 +258,20 @@ namespace Buntu.Controllers
                     try
                     {
                         await postService.AddPostAsync(model);
+
+                        var followers = await followService.GetUserFollowersAsync(User.Id());
+                        foreach (var follower in followers)
+                        {
+                            var notification = new NotificationModel()
+                            {
+                                UserId = follower.FollowerId,
+                                OtherUserId = User.Id(),
+                                Type = "Post",
+                                RelatedId = model.Id
+                            };
+
+                            await notificationService.AddNotificationAsync(notification);
+                        }
                     }
                     catch (Exception)
                     {
