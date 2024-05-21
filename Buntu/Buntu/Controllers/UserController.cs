@@ -136,12 +136,23 @@ namespace Buntu.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Profile(string username) 
+        public async Task<IActionResult> Profile(string username, int notId = 0) 
         {
             var model = await userManager.FindByNameAsync(username);
 
             if (model == null)
                 return BadRequest();
+
+            if (notId != 0) 
+            {
+                try
+                {
+                    await notificationService.MarkNotificationAsReadAsync(notId);
+                }
+                catch (Exception)
+                {
+                }
+            }
 
             return View(model);
         }
