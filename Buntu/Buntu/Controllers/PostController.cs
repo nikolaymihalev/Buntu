@@ -148,6 +148,27 @@ namespace Buntu.Controllers
                 };
 
                 await commentService.AddCommentAsync(comment);
+
+                var post = await postService.GetPostByIdAsync(postId);
+                var notification = new NotificationModel()
+                {
+                    UserId = post.UserId,
+                    OtherUserId = User.Id(),
+                    Type = "Comment",
+                    RelatedId = comment.Id
+                };
+
+                if (post.UserId != User.Id())
+                {
+                    try
+                    {
+                        await notificationService.AddNotificationAsync(notification);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+
                 success = true;
             }
             catch (Exception)
