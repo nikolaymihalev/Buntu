@@ -3,7 +3,7 @@
 <br />
 <h2 class="text-start">Search</h2><br />
 
-<form class="row g-3">
+<form class="row g-3" asp-controller="User" asp-action="Search" method="post" enctype="multipart/form-data">
     <div class="col-auto">
         <input asp-for="Username" class="form-control" placeholder="Search by username...">
         <span asp-validation-for="Username" class="small text-danger"></span>

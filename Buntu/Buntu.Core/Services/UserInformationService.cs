@@ -55,9 +55,21 @@ namespace Buntu.Core.Services
 
         public async Task<IEnumerable<ApplicationUser>> GetSearchedUserResultAsync(string username) 
         {
-            return await repository.AllReadonly<ApplicationUser>()
+            var list = await repository.AllReadonly<ApplicationUser>()
                 .Where(x => x.UserName.Contains(username))
                 .ToListAsync();
+
+            var list2 = await repository.AllReadonly<ApplicationUser>()
+                .Where(x => x.FirstName.Contains(username) || x.LastName.Contains(username))
+                .ToListAsync();
+
+            foreach (var item in list2) 
+            {
+                if(list.Contains(item) == false)
+                    list.Add(item);
+            }
+
+            return list; 
         }
     }
 }
