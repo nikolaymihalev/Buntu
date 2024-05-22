@@ -1,4 +1,5 @@
 ﻿using Buntu.Core.Models.User;
+using Buntu.Infrastructure.Data.Models;
 
 namespace Buntu.Core.Contracts
 {
@@ -6,5 +7,6 @@ namespace Buntu.Core.Contracts
     {
         Task AddUserInformationAsync(UserInformationModel model);
         Task<UserInformationModel?> GetUserInformationAsync(string userId);
+        Task<IEnumerable<ApplicationUser>> GetSearchedUserResultAsync(string username);
     }
 }
