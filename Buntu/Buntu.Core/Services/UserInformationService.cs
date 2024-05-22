@@ -65,7 +65,7 @@ namespace Buntu.Core.Services
 
             foreach (var item in list2) 
             {
-                if(list.Contains(item) == false)
+                if(list.Any(x=>x.FirstName==item.FirstName || x.LastName == item.LastName) == false)
                     list.Add(item);
             }
 

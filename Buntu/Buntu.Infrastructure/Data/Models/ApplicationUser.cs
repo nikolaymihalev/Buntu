@@ -18,7 +18,7 @@ namespace Buntu.Infrastructure.Data.Models
         public string LastName { get; set; } = string.Empty;
 
         [Comment("User full name")]
-        public string FullName => $"{FirstName + LastName}";
+        public string FullName => $"{FirstName} {LastName}";
 
         [Required]
         [Comment("User profile image")]

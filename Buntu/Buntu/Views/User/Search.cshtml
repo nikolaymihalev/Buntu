@@ -5,16 +5,39 @@
 
 <form class="row g-3" asp-controller="User" asp-action="Search" method="post" enctype="multipart/form-data">
     <div class="col-auto">
-        <input asp-for="Username" class="form-control" placeholder="Search by username...">
+        <input asp-for="Username" class="form-control" placeholder="Search here...">
         <span asp-validation-for="Username" class="small text-danger"></span>
     </div>
     <div class="col-auto">
         <button type="submit" class="btn mb-3" style="background: lightcoral; color:white">
-            <img src="~/images/whitebuttons/Search.png" style="width:20px; height: 20px"/>
+            <img src="~/images/whitebuttons/Search.png" style="width:20px; height: 20px" />
         </button>
     </div>
 </form>
-    
+
+@{
+    if (Model.Results != null)
+    {
+        if (Model.Results.Any())
+        {
+            foreach (var user in Model.Results)
+            {
+                <br />
+                <a asp-action="Profile" asp-controller="User" asp-route-username="@user.UserName" style="text-decoration: none">
+                    <div class="user-info">
+                        <img class="user-profile-img" src="data:image/png;base64,@Convert.ToBase64String(user.ProfileImage)" alt="Image">
+                        <h5 class="user-username">@user.UserName (@user.FullName)</h5>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <br />
+            <h5 class="text-start">No result!</h5>
+        }
+    }    
+}
 
 
 @section Scripts {

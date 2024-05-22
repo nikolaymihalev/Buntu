@@ -221,6 +221,7 @@ namespace Buntu.Controllers
         public IActionResult Search() 
         {
             var model = new SearchModel();
+            model.Results = null;
 
             return View(model);
         }
@@ -228,15 +229,9 @@ namespace Buntu.Controllers
         [HttpPost]
         public async Task<IActionResult> Search(SearchModel model) 
         {
-            var result = await userInformationService.GetSearchedUserResultAsync(model.Username);
+            model.Results = await userInformationService.GetSearchedUserResultAsync(model.Username);
 
-            return RedirectToAction(nameof(Result), new { result = result });
-        }
-
-        [HttpGet]
-        public IActionResult Result(IEnumerable<ApplicationUser> result) 
-        {
-            return View(result);
+            return View(model);
         }
     }
 }
