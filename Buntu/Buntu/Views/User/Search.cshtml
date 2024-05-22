@@ -1,0 +1,22 @@
+﻿@model SearchModel
+
+<br />
+<h2 class="text-start">Search</h2><br />
+
+<form class="row g-3">
+    <div class="col-auto">
+        <input asp-for="Username" class="form-control" placeholder="Search by username...">
+        <span asp-validation-for="Username" class="small text-danger"></span>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn mb-3" style="background: lightcoral; color:white">
+            <img src="~/images/whitebuttons/Search.png" style="width:20px; height: 20px"/>
+        </button>
+    </div>
+</form>
+    
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
