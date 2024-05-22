@@ -2,7 +2,6 @@
 using Buntu.Core.Models.Follow;
 using Buntu.Core.Models.Notification;
 using Buntu.Core.Models.User;
-using Buntu.Core.Models.UserInformation;
 using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

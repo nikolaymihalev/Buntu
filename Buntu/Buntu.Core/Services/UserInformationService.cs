@@ -1,5 +1,5 @@
 ﻿using Buntu.Core.Contracts;
-using Buntu.Core.Models.UserInformation;
+using Buntu.Core.Models.User;
 using Buntu.Infrastructure.Common;
 using Buntu.Infrastructure.Constants;
 using Buntu.Infrastructure.Data.Models;

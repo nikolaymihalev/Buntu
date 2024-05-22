@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Buntu.Core.Models.UserInformation
+namespace Buntu.Core.Models.User
 {
     /// <summary>
     /// General information about user
@@ -15,7 +15,7 @@ namespace Buntu.Core.Models.UserInformation
         /// <summary>
         /// User identifier
         /// </summary>
-        [Required]        
+        [Required]
         public string UserId { get; set; } = string.Empty;
 
         /// <summary>

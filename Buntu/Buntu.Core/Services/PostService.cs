@@ -1,5 +1,4 @@
 ﻿using Buntu.Core.Contracts;
-using Buntu.Core.Enums;
 using Buntu.Core.Models.Comment;
 using Buntu.Core.Models.Post;
 using Buntu.Infrastructure.Common;

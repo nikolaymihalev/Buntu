@@ -1,4 +1,4 @@
-﻿using Buntu.Core.Models.UserInformation;
+﻿using Buntu.Core.Models.User;
 
 namespace Buntu.Core.Contracts
 {
