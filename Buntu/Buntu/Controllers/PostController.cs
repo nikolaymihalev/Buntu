@@ -5,7 +5,6 @@ using Buntu.Core.Models.FavoritePost;
 using Buntu.Core.Models.Like;
 using Buntu.Core.Models.Notification;
 using Buntu.Core.Models.Post;
-using Buntu.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 

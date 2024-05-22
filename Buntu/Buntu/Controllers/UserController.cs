@@ -216,5 +216,13 @@ namespace Buntu.Controllers
 
             return RedirectToAction(nameof(Notifications));
         }
+
+        [HttpGet]
+        public IActionResult Search() 
+        {
+            var model = new SearchModel();
+
+            return View(model);
+        }
     }
 }
