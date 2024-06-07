@@ -314,10 +314,15 @@ body {
 
 .port-nav-btns > * {
     padding: 0.3em;
+    margin-left:1em;
 }
 
-@media (orientation: portrait) {
-    .land-nav-menu-btns {
+    .port-nav-btns .more-btns-container{
+        display: none;
+    }
+
+    @media (orientation: portrait) {
+        .land-nav-menu-btns {
         display: none;
     }
 

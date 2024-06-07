@@ -35,18 +35,21 @@
     <div class="port-nav-btns">
         <a class="nav-menu-link" asp-action="Home" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Home.png" /></a>
         <a class="nav-menu-link" asp-action="Search" asp-controller="User"><img class="nav-menu-link-img" src="~/images/menubuttons/Search.png" /></a>
-        <a class="nav-menu-link" asp-action="Notifications" asp-controller="User">
-            <img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" />            
-            @{
-                if (notCount > 0)
-                {
-                    <img class="nav-menu-link-img" style="width:13px; height: 13px" src="~/images/menubuttons/Circle.png" />
-                }
-            }
-        </a>
-        <a class="nav-menu-link" asp-action="Liked" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Heart.png" /></a>
-        <a class="nav-menu-link" asp-action="Favorites" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Favorite.png" /></a>
         <a class="nav-menu-link" asp-action="Add" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Create.png" /></a>
-        <a class="nav-menu-link" asp-action="Profile" asp-controller="User" asp-route-username="@User?.Identity?.Name"><img class="nav-menu-link-img" src="data:image/png;base64,@Convert.ToBase64String(user.ProfileImage)"></a>
+        <a class="nav-menu-link"><img class="nav-menu-link-img" src="~/images/menubuttons/More.png" /></a>
+        <div class="more-btns-container">
+            <a class="nav-menu-link" asp-action="Notifications" asp-controller="User">
+                <img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" />
+                @{
+                    if (notCount > 0)
+                    {
+                        <img class="nav-menu-link-img" style="width:13px; height: 13px" src="~/images/menubuttons/Circle.png" />
+                    }
+                }
+            </a>
+            <a class="nav-menu-link" asp-action="Liked" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Heart.png" /></a>
+            <a class="nav-menu-link" asp-action="Favorites" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Favorite.png" /></a>
+            <a class="nav-menu-link" asp-action="Profile" asp-controller="User" asp-route-username="@User?.Identity?.Name"><img class="nav-menu-link-img" src="data:image/png;base64,@Convert.ToBase64String(user.ProfileImage)"></a>
+        </div>        
     </div>
 }
