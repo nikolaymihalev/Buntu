@@ -5,12 +5,11 @@
     var user = await userManager.FindByIdAsync(User.Id());
     int notCount = await notificationService.GetUnreadNotificationsCountAsync(User.Id());
 
-    <aside class="nav-menu-btns">
-        <br />
-        <img src="~/images/menubuttons/Logo.png" style="width:80%;" /><br /><br /><br /><br />
+    <aside class="land-nav-menu-btns">
+        <img src="~/images/menubuttons/Logo.png" style="width:80%;" />
 
-        <a class="nav-menu-link" asp-action="Home" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Home.png" /> Home</a><br /><br />
-        <a class="nav-menu-link" asp-action="Search" asp-controller="User"><img class="nav-menu-link-img" src="~/images/menubuttons/Search.png" /> Search</a><br /><br />
+        <a class="nav-menu-link" asp-action="Home" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Home.png" /> Home</a>
+        <a class="nav-menu-link" asp-action="Search" asp-controller="User"><img class="nav-menu-link-img" src="~/images/menubuttons/Search.png" /> Search</a>
         <a class="nav-menu-link" asp-action="Notifications" asp-controller="User">
             <img class="nav-menu-link-img" src="~/images/menubuttons/Bell.png" /> 
             Notifications
@@ -21,9 +20,9 @@
                 }
             }
         </a><br /><br />
-        <a class="nav-menu-link" asp-action="Liked" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Heart.png" /> Liked</a><br /><br />
-        <a class="nav-menu-link" asp-action="Favorites" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Favorite.png" /> Favorites</a><br /><br />
-        <a class="nav-menu-link" asp-action="Add" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Create.png" /> Create</a><br /><br />
+        <a class="nav-menu-link" asp-action="Liked" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Heart.png" /> Liked</a>
+        <a class="nav-menu-link" asp-action="Favorites" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Favorite.png" /> Favorites</a>
+        <a class="nav-menu-link" asp-action="Add" asp-controller="Post"><img class="nav-menu-link-img" src="~/images/menubuttons/Create.png" /> Create</a>
         <a class="nav-menu-link" asp-action="Profile" asp-controller="User" asp-route-username="@User?.Identity?.Name"><img class="nav-menu-link-img" src="data:image/png;base64,@Convert.ToBase64String(user.ProfileImage)"> Profile</a>
 
         <div style="margin-top:400px">

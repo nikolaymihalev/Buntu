@@ -261,7 +261,7 @@ body {
     margin: 0px 0px 0px 30px;
 }
 
-.nav-menu-btns {
+.land-nav-menu-btns {
     position: fixed;
     left: 2%;
     height: 100%;
@@ -286,4 +286,16 @@ body {
     border-radius: 10px;
     width: 60%;
     margin: 40px 0 10px 20%;
+}
+
+@media (orientation: portrait) {
+    .land-nav-menu-btns {
+        display: none;
+    }
+}
+
+@media (orientation: landscape) {
+    .land-nav-menu-btns {
+        display: block;
+    }
 }
