@@ -320,10 +320,18 @@ body {
     .land-nav-menu-btns {
         display: none;
     }
+
+    .port-nav-btns {
+        display: flex;
+    }
 }
 
 @media (orientation: landscape) {
     .land-nav-menu-btns {
         display: block;
+    }
+
+    .port-nav-btns {
+        display: none;
     }
 }
