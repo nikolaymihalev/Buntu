@@ -39,7 +39,6 @@ Thank you for being a part of the Buntu community. Together, let's create someth
 ##  :wrench: Development
 - ASP.NET Core
 - Entity Framework Core
-- Unit Testing
 - HTML
 - CSS
 - JS, AJAX
